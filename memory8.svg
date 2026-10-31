@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg8" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffd6e0"/>
+      <stop offset="50%" stop-color="#ffccd5"/>
+      <stop offset="100%" stop-color="#ffe5ec"/>
+    </linearGradient>
+    <linearGradient id="carGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ff758f"/>
+      <stop offset="100%" stop-color="#ff4d6d"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="500" height="400" rx="16" fill="url(#bg8)"/>
+
+  <!-- Road & Mountains in Background -->
+  <path d="M 0,220 Q 150,170 300,210 Q 420,160 500,200 L 500,400 L 0,400 Z" fill="#9a8c98" opacity="0.4"/>
+  <path d="M 0,280 Q 250,260 500,280 L 500,400 L 0,400 Z" fill="#4a4e69"/>
+  <!-- Road Center Dashed Line -->
+  <line x1="0" y1="340" x2="500" y2="340" stroke="#ffd166" stroke-width="4" stroke-dasharray="24,18"/>
+
+  <!-- Music Notes Floating from Car -->
+  <g fill="#ff4d6d">
+    <text x="140" y="140" font-size="28" transform="rotate(-15, 140, 140)">🎵</text>
+    <text x="210" y="110" font-size="34" transform="rotate(12, 210, 110)">🎶</text>
+    <text x="320" y="130" font-size="26" transform="rotate(-10, 320, 130)">💕</text>
+  </g>
+
+  <!-- Cute Retro Convertible Car (Center) -->
+  <g transform="translate(130, 210)">
+    <!-- Car Body -->
+    <path d="M 20,60 Q 30,30 60,30 L 160,30 Q 185,15 220,15 L 230,35 Q 260,40 260,75 L 255,95 L 0,95 L 5,75 Z" fill="url(#carGrad)"/>
+    <!-- Windshield -->
+    <path d="M 75,30 L 105,-15 L 155,-15 L 160,30 Z" fill="#ffffff" opacity="0.75" stroke="#ffccd5" stroke-width="2"/>
+    <!-- Cute Besties Silhouette inside Car -->
+    <circle cx="115" cy="10" r="14" fill="#4a2e35"/>
+    <circle cx="145" cy="8" r="14" fill="#4a2e35"/>
+    <!-- Sunglasses -->
+    <rect x="110" y="6" width="12" height="6" rx="2" fill="#ffd166"/>
+    <rect x="140" y="4" width="12" height="6" rx="2" fill="#ffd166"/>
+
+    <!-- Headlight -->
+    <circle cx="255" cy="65" r="10" fill="#fff3b0"/>
+    <circle cx="255" cy="65" r="6" fill="#ffffff"/>
+
+    <!-- Wheels -->
+    <g transform="translate(50, 95)">
+      <circle cx="0" cy="0" r="24" fill="#2b2d42"/>
+      <circle cx="0" cy="0" r="12" fill="#ffffff"/>
+      <circle cx="0" cy="0" r="6" fill="#ff758f"/>
+    </g>
+    <g transform="translate(200, 95)">
+      <circle cx="0" cy="0" r="24" fill="#2b2d42"/>
+      <circle cx="0" cy="0" r="12" fill="#ffffff"/>
+      <circle cx="0" cy="0" r="6" fill="#ff758f"/>
+    </g>
+  </g>
+
+  <!-- Title Badge -->
+  <g transform="translate(250, 48)" text-anchor="middle">
+    <rect x="-145" y="-18" width="290" height="36" rx="18" fill="#ffffff" filter="drop-shadow(0 4px 10px rgba(255,105,135,0.25))"/>
+    <text y="6" font-family="'Quicksand', sans-serif" font-size="14.5" font-weight="700" fill="#e73868">🚗 Road Trips & Singing Off-Key 🎶</text>
+  </g>
+</svg>

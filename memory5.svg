@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="nightGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2b2d42"/>
+      <stop offset="50%" stop-color="#4a4e69"/>
+      <stop offset="100%" stop-color="#9a8c98"/>
+    </linearGradient>
+    <radialGradient id="moonGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="60%" stop-color="#f5e6e8"/>
+      <stop offset="100%" stop-color="#9a8c98" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Sky -->
+  <rect width="500" height="400" rx="16" fill="url(#nightGrad)"/>
+
+  <!-- Crescent Moon -->
+  <g transform="translate(390, 80)">
+    <circle cx="0" cy="0" r="38" fill="url(#moonGlow)" opacity="0.4"/>
+    <path d="M -15,-30 A 32 32 0 1 0 25 25 A 26 26 0 1 1 -15 -30 Z" fill="#ffd166"/>
+  </g>
+
+  <!-- Twinkling Stars -->
+  <g fill="#ffffff">
+    <circle cx="70" cy="60" r="2.5" opacity="0.9"/>
+    <circle cx="120" cy="110" r="1.5" opacity="0.7"/>
+    <circle cx="180" cy="50" r="3" opacity="0.95"/>
+    <circle cx="230" cy="90" r="2" opacity="0.8"/>
+    <circle cx="310" cy="65" r="2.5" opacity="0.85"/>
+    <circle cx="450" cy="150" r="2" opacity="0.7"/>
+    <circle cx="90" cy="180" r="1.5" opacity="0.6"/>
+    <!-- 4-point twinkling stars -->
+    <path d="M 140,75 Q 140,82 135,82 Q 140,82 140,89 Q 140,82 145,82 Q 140,82 140,75 Z" fill="#fff" opacity="0.9"/>
+    <path d="M 270,120 Q 270,126 265,126 Q 270,126 270,132 Q 270,126 275,126 Q 270,126 270,120 Z" fill="#ffd166" opacity="0.9"/>
+  </g>
+
+  <!-- Rolling Hill Landscape -->
+  <path d="M 0,310 Q 250,260 500,310 L 500,400 L 0,400 Z" fill="#1b1c28"/>
+  <path d="M 0,335 Q 250,290 500,335 L 500,400 L 0,400 Z" fill="#11121a"/>
+
+  <!-- Two Friends Sitting Together on Hill Looking at Stars -->
+  <g fill="#f5e6e8" transform="translate(200, 240)">
+    <!-- Friend 1 (Left) -->
+    <circle cx="30" cy="25" r="14" fill="#f5e6e8"/>
+    <!-- Body / Coat -->
+    <path d="M 18,39 Q 30,36 42,39 L 48,95 L 12,95 Z" fill="#ff758f"/>
+    <!-- Cute Beanie Hat -->
+    <path d="M 16,24 C 16,10 44,10 44,24 Z" fill="#ff4d6d"/>
+    <circle cx="30" cy="10" r="4" fill="#ffffff"/>
+
+    <!-- Friend 2 (Right) -->
+    <circle cx="70" cy="27" r="14" fill="#f5e6e8"/>
+    <!-- Body / Coat -->
+    <path d="M 58,41 Q 70,38 82,41 L 88,95 L 52,95 Z" fill="#ffb3c6"/>
+    <!-- Cute Hair with Ribbon -->
+    <path d="M 56,26 C 56,12 84,12 84,26 Z" fill="#5c4d7d"/>
+    <circle cx="60" cy="18" r="3" fill="#ff758f"/>
+
+    <!-- Arm wrapped around bestie's shoulder -->
+    <path d="M 28,45 Q 50,42 66,48" stroke="#ff4d6d" stroke-width="6" stroke-linecap="round" fill="none"/>
+
+    <!-- Heart floating above them -->
+    <g transform="translate(50, -10)">
+      <path d="M 0,-4 C -5,-12 -14,-4 0,10 C 14,-4 5,-12 0,-4 Z" fill="#ff4d6d"/>
+    </g>
+  </g>
+
+  <!-- Fairy Light String across Bottom Hill -->
+  <g stroke="#ffffff" stroke-width="1" fill="none" opacity="0.6">
+    <path d="M 40,360 Q 250,340 460,365"/>
+    <circle cx="70" cy="358" r="4" fill="#ffd166"/>
+    <circle cx="130" cy="354" r="4" fill="#ff758f"/>
+    <circle cx="190" cy="350" r="4" fill="#70c1b3"/>
+    <circle cx="310" cy="350" r="4" fill="#ffd166"/>
+    <circle cx="370" cy="354" r="4" fill="#ff758f"/>
+    <circle cx="430" cy="360" r="4" fill="#70c1b3"/>
+  </g>
+
+  <!-- Title Badge -->
+  <g transform="translate(250, 45)" text-anchor="middle">
+    <rect x="-140" y="-18" width="280" height="36" rx="18" fill="#ffffff" filter="drop-shadow(0 4px 10px rgba(0,0,0,0.3))"/>
+    <text y="6" font-family="'Quicksand', sans-serif" font-size="15" font-weight="700" fill="#e73868">👯‍♀️ Unbreakable Bond Under the Stars ✨</text>
+  </g>
+</svg>

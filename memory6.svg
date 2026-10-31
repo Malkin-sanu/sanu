@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg6" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff5f7"/>
+      <stop offset="50%" stop-color="#fed9e2"/>
+      <stop offset="100%" stop-color="#fbc3d1"/>
+    </linearGradient>
+    <linearGradient id="glassDrink" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ff758f" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#ff4d6d" stop-opacity="0.95"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="500" height="400" rx="16" fill="url(#bg6)"/>
+
+  <!-- Confetti and Star Burst Background -->
+  <g>
+    <!-- Multi-color confetti ribbons & dots -->
+    <rect x="70" y="70" width="12" height="6" rx="2" fill="#ff4d6d" transform="rotate(35, 70, 70)"/>
+    <rect x="130" y="110" width="14" height="6" rx="2" fill="#ffd166" transform="rotate(-25, 130, 110)"/>
+    <rect x="380" y="80" width="14" height="6" rx="2" fill="#70c1b3" transform="rotate(45, 380, 80)"/>
+    <rect x="420" y="140" width="12" height="6" rx="2" fill="#ff758f" transform="rotate(-30, 420, 140)"/>
+    <rect x="90" y="280" width="14" height="6" rx="2" fill="#ffb703" transform="rotate(15, 90, 280)"/>
+    <rect x="400" y="270" width="12" height="6" rx="2" fill="#e73868" transform="rotate(-40, 400, 270)"/>
+
+    <circle cx="100" cy="160" r="5" fill="#ff758f"/>
+    <circle cx="360" cy="180" r="6" fill="#ffd166"/>
+    <circle cx="120" cy="220" r="4" fill="#70c1b3"/>
+    <circle cx="390" cy="220" r="5" fill="#ff4d6d"/>
+
+    <!-- Sparkling Stars -->
+    <path d="M 250,90 Q 250,98 243,98 Q 250,98 250,106 Q 250,98 257,98 Q 250,98 250,90 Z" fill="#ffd166"/>
+    <path d="M 210,120 Q 210,126 205,126 Q 210,126 210,132 Q 210,126 215,126 Q 210,126 210,120 Z" fill="#ff758f"/>
+    <path d="M 290,115 Q 290,121 285,121 Q 290,121 290,127 Q 290,121 295,121 Q 290,121 290,115 Z" fill="#ff758f"/>
+  </g>
+
+  <!-- Two Toasting Glasses (Clinking "Cheers!") -->
+  <g transform="translate(150, 140)">
+    <!-- Clink Sparkle / Clinking Rays -->
+    <g transform="translate(100, 45)">
+      <line x1="0" y1="-25" x2="0" y2="-10" stroke="#ffd166" stroke-width="3" stroke-linecap="round"/>
+      <line x1="-20" y1="-20" x2="-8" y2="-8" stroke="#ffd166" stroke-width="3" stroke-linecap="round"/>
+      <line x1="20" y1="-20" x2="8" y2="-8" stroke="#ffd166" stroke-width="3" stroke-linecap="round"/>
+      <line x1="-25" y1="0" x2="-10" y2="0" stroke="#ffd166" stroke-width="3" stroke-linecap="round"/>
+      <line x1="25" y1="0" x2="10" y2="0" stroke="#ffd166" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="0" cy="0" r="7" fill="#ffffff" filter="drop-shadow(0 0 6px #ffd166)"/>
+    </g>
+
+    <!-- Left Toasting Glass (Tilted right ~18 deg) -->
+    <g transform="translate(75, 80) rotate(18)">
+      <!-- Bowl of glass -->
+      <path d="M -22,-60 L 22,-60 L 16,0 C 12,24 -12,24 -16,0 Z" fill="url(#glassDrink)"/>
+      <path d="M -22,-60 L 22,-60 L 16,0 C 12,24 -12,24 -16,0 Z" fill="none" stroke="#ffffff" stroke-width="3"/>
+      <!-- Liquid Bubbles -->
+      <circle cx="-5" cy="-20" r="3" fill="#ffffff" opacity="0.8"/>
+      <circle cx="8" cy="-10" r="2.5" fill="#ffffff" opacity="0.8"/>
+      <circle cx="-2" cy="-40" r="2" fill="#ffffff" opacity="0.8"/>
+      <!-- Stem -->
+      <line x1="0" y1="18" x2="0" y2="70" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
+      <!-- Base -->
+      <ellipse cx="0" cy="70" rx="22" ry="5" fill="#ffffff"/>
+      <!-- Strawberry / Cherry garnish -->
+      <circle cx="20" cy="-62" r="7" fill="#e63946"/>
+      <path d="M 20,-68 Q 24,-74 30,-72" stroke="#2a9d8f" stroke-width="2" fill="none"/>
+    </g>
+
+    <!-- Right Toasting Glass (Tilted left ~-18 deg) -->
+    <g transform="translate(125, 80) rotate(-18)">
+      <!-- Bowl of glass -->
+      <path d="M -22,-60 L 22,-60 L 16,0 C 12,24 -12,24 -16,0 Z" fill="url(#glassDrink)"/>
+      <path d="M -22,-60 L 22,-60 L 16,0 C 12,24 -12,24 -16,0 Z" fill="none" stroke="#ffffff" stroke-width="3"/>
+      <!-- Liquid Bubbles -->
+      <circle cx="5" cy="-20" r="3" fill="#ffffff" opacity="0.8"/>
+      <circle cx="-8" cy="-10" r="2.5" fill="#ffffff" opacity="0.8"/>
+      <circle cx="2" cy="-40" r="2" fill="#ffffff" opacity="0.8"/>
+      <!-- Stem -->
+      <line x1="0" y1="18" x2="0" y2="70" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
+      <!-- Base -->
+      <ellipse cx="0" cy="70" rx="22" ry="5" fill="#ffffff"/>
+      <!-- Lemon slice garnish -->
+      <path d="M -22,-64 A 8 8 0 0 1 -10 -72 Z" fill="#ffd166"/>
+    </g>
+  </g>
+
+  <!-- Title Badge -->
+  <g transform="translate(250, 360)" text-anchor="middle">
+    <rect x="-140" y="-18" width="280" height="36" rx="18" fill="#ffffff" filter="drop-shadow(0 4px 10px rgba(255,105,135,0.25))"/>
+    <text y="6" font-family="'Quicksand', sans-serif" font-size="15" font-weight="700" fill="#e73868">🥂 Here's To A Thousand More Years 💕</text>
+  </g>
+</svg>

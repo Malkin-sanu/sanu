@@ -91,113 +91,99 @@ const BIRTHDAY_CONFIG = {
   memories: [
     {
       id: 1,
-      image: "assets/images/1.webp",
-     
+      image: "photo1.webp",
       date: "Spring Memories",
       rotate: "-2.5deg"
     },
     {
       id: 2,
-      image: "assets/images/2.webp",
-     
+      image: "photo2.webp",
       date: "Sunset Walk",
       rotate: "3deg"
     },
     {
       id: 3,
-      image: "assets/images/3.webp",
-
+      image: "photo3.webp",
       date: "Crazy Moments",
       rotate: "-1.8deg"
     },
     {
       id: 4,
-      image: "assets/images/4.webp",
-      
-      
+      image: "photo4.webp",
       date: "Special Day",
       rotate: "2.2deg"
     },
     {
       id: 5,
-      image: "assets/images/5.webp",
-     
+      image: "photo5.webp",
       date: "Unbreakable Bond",
       rotate: "-3deg"
     },
     {
       id: 6,
-      image: "assets/images/6.webp",
-     
+      image: "photo6.webp",
       date: "Forever & Ever",
       rotate: "1.5deg"
     },
     {
       id: 7,
-      image: "assets/images/7.jpeg",
-     
+      image: "photo7.jpeg",
       date: "Midnight Cravings",
       rotate: "-2deg"
     },
     {
       id: 8,
-      image: "assets/images/8.webp",
+      image: "photo8.webp",
       caption: "FAVOURITE PERSON 🫶",
       date: "Adventure Time",
       rotate: "2.8deg"
     },
     {
       id: 9,
-      image: "assets/images/9.jpeg",
-     
+      image: "photo9.jpeg",
       date: "Sunny Afternoons",
       rotate: "-1.2deg"
     },
     {
       id: 10,
-      image: "assets/images/10.jpeg",
-    
+      image: "photo10.jpeg",
       date: "Cozy Vibes",
       rotate: "3.2deg"
     },
     {
       id: 11,
-      image: "assets/images/11.jpeg",
-   
+      image: "photo11.jpeg",
       date: "Sleepover Nights",
       rotate: "-2.7deg"
     },
     {
       id: 12,
-      image: "assets/images/12.jpeg",
-     
+      image: "photo12.jpeg",
       date: "Summer Holiday",
       rotate: "1.8deg"
     },
     {
       id: 13,
-      image: "assets/images/13.jpeg",
-    
+      image: "photo13.jpeg",
       date: "Baking Chaos",
       rotate: "-3.2deg"
     },
     {
       id: 14,
-      image: "assets/images/14.jpeg",
-     
+      image: "photo14.jpeg",
       date: "Late Night Talks",
       rotate: "2deg"
     },
     {
       id: 15,
-      image: "assets/images/15.webp",
+      image: "photo15.webp",
       caption: "kuchu puchu🎀📸",
       date: "Pure Shenanigans",
       rotate: "-1.5deg"
     },
     {
       id: 16,
-      image: "assets/images/16.webp",
+      image: "photo16.webp",
       caption: "Forever my best friend, happy birthday! 💖🎉",
       date: "Unconditional Love",
       rotate: "2.5deg"

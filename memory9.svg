@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg9" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#e8f5e9"/>
+      <stop offset="50%" stop-color="#fff0f5"/>
+      <stop offset="100%" stop-color="#ffd6e0"/>
+    </linearGradient>
+    <pattern id="gingham" width="24" height="24" patternUnits="userSpaceOnUse">
+      <rect width="24" height="24" fill="#ffffff"/>
+      <rect width="12" height="24" fill="#ffccd5" opacity="0.6"/>
+      <rect width="24" height="12" fill="#ffccd5" opacity="0.6"/>
+      <rect width="12" height="12" fill="#ff758f" opacity="0.5"/>
+    </pattern>
+  </defs>
+
+  <rect width="500" height="400" rx="16" fill="url(#bg9)"/>
+
+  <!-- Green Grass Hill -->
+  <path d="M 0,260 Q 250,220 500,260 L 500,400 L 0,400 Z" fill="#80b918" opacity="0.85"/>
+  <path d="M 0,285 Q 250,250 500,285 L 500,400 L 0,400 Z" fill="#55a630"/>
+
+  <!-- Gingham Picnic Blanket -->
+  <polygon points="120,270 380,270 420,380 80,380" fill="url(#gingham)" stroke="#ffb3c6" stroke-width="2"/>
+
+  <!-- Picnic Basket -->
+  <g transform="translate(140, 240)">
+    <!-- Basket body -->
+    <path d="M 10,40 L 90,40 L 80,90 L 20,90 Z" fill="#ddb892" stroke="#b08968" stroke-width="2"/>
+    <path d="M 10,40 L 90,40 M 15,55 L 85,55 M 20,70 L 80,70" stroke="#7f5539" stroke-width="1.5"/>
+    <!-- Basket Lid flaps -->
+    <ellipse cx="50" cy="40" rx="44" ry="10" fill="#ddb892" stroke="#b08968" stroke-width="2"/>
+    <!-- Handle -->
+    <path d="M 25,40 C 25,5 75,5 75,40" fill="none" stroke="#7f5539" stroke-width="5" stroke-linecap="round"/>
+  </g>
+
+  <!-- Flower Crown in the Center -->
+  <g transform="translate(290, 275)">
+    <!-- Vine Circle -->
+    <ellipse cx="40" cy="30" rx="48" ry="24" fill="none" stroke="#55a630" stroke-width="4"/>
+    <!-- Blooming flowers along the crown -->
+    <!-- Flower 1 -->
+    <circle cx="0" cy="30" r="10" fill="#ff758f"/>
+    <circle cx="0" cy="30" r="4" fill="#ffd166"/>
+    <!-- Flower 2 -->
+    <circle cx="20" cy="12" r="11" fill="#ffffff"/>
+    <circle cx="20" cy="12" r="4" fill="#ffd166"/>
+    <!-- Flower 3 -->
+    <circle cx="55" cy="10" r="12" fill="#ff4d6d"/>
+    <circle cx="55" cy="10" r="5" fill="#ffd166"/>
+    <!-- Flower 4 -->
+    <circle cx="82" cy="22" r="10" fill="#ffffff"/>
+    <circle cx="82" cy="22" r="4" fill="#ff758f"/>
+    <!-- Flower 5 -->
+    <circle cx="65" cy="48" r="11" fill="#ffb3c6"/>
+    <circle cx="65" cy="48" r="4" fill="#ffffff"/>
+    <!-- Flower 6 -->
+    <circle cx="25" cy="52" r="10" fill="#ffd166"/>
+    <circle cx="25" cy="52" r="4" fill="#e76f51"/>
+  </g>
+
+  <!-- Title Badge -->
+  <g transform="translate(250, 48)" text-anchor="middle">
+    <rect x="-145" y="-18" width="290" height="36" rx="18" fill="#ffffff" filter="drop-shadow(0 4px 10px rgba(255,105,135,0.25))"/>
+    <text y="6" font-family="'Quicksand', sans-serif" font-size="14.5" font-weight="700" fill="#e73868">🌸 Picnics in the Park & Flower Crowns 🧺</text>
+  </g>
+</svg>

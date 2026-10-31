@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff0f5"/>
+      <stop offset="50%" stop-color="#ffe3eb"/>
+      <stop offset="100%" stop-color="#fed1dc"/>
+    </linearGradient>
+    <linearGradient id="coffeeCup" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffb3c6"/>
+      <stop offset="100%" stop-color="#ff85a1"/>
+    </linearGradient>
+    <linearGradient id="bobaCup" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffccd5"/>
+      <stop offset="100%" stop-color="#ffb3c6"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="500" height="400" rx="16" fill="url(#bg1)"/>
+  
+  <!-- Decorative Pattern -->
+  <g fill="#ff758f" opacity="0.15">
+    <circle cx="50" cy="50" r="25"/>
+    <circle cx="450" cy="80" r="35"/>
+    <circle cx="420" cy="340" r="30"/>
+    <circle cx="70" cy="330" r="20"/>
+  </g>
+
+  <!-- Cute Tabletop -->
+  <ellipse cx="250" cy="330" rx="210" ry="45" fill="#ffffff" opacity="0.85"/>
+  <ellipse cx="250" cy="330" rx="190" ry="38" fill="none" stroke="#ffccd5" stroke-width="2" stroke-dasharray="8,6"/>
+
+  <!-- Coffee Cup (Left) -->
+  <g transform="translate(160, 210)">
+    <!-- Steam / Warmth Hearts -->
+    <path d="M 30,-30 Q 20,-50 35,-65" fill="none" stroke="#ff758f" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="4,4"/>
+    <path d="M 50,-25 Q 60,-45 45,-60" fill="none" stroke="#ff758f" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="4,4"/>
+    <path d="M 40,-75 C 40,-80 46,-80 46,-75 C 46,-70 40,-65 40,-65 C 40,-65 34,-70 34,-75 C 34,-80 40,-80 40,-75 Z" fill="#ff4d6d"/>
+
+    <!-- Cup Body -->
+    <path d="M 10,0 L 70,0 L 62,75 Q 40,82 18,75 Z" fill="url(#coffeeCup)"/>
+    <!-- Cute Cup Sleeve -->
+    <path d="M 13,20 L 67,20 L 64,52 L 16,52 Z" fill="#ffffff"/>
+    <circle cx="40" cy="36" r="10" fill="#ffe5ec"/>
+    <path d="M 40,33 C 40,30 43,30 43,33 C 43,36 40,39 40,39 C 40,39 37,36 37,33 C 37,30 40,30 40,33 Z" fill="#ff4d6d"/>
+    <!-- Cup Handle -->
+    <path d="M 68,15 C 85,15 85,55 64,55" fill="none" stroke="#ff85a1" stroke-width="6" stroke-linecap="round"/>
+    <!-- Saucer -->
+    <ellipse cx="40" cy="78" rx="42" ry="8" fill="#ffccd5"/>
+  </g>
+
+  <!-- Boba Drink (Right) -->
+  <g transform="translate(260, 160)">
+    <!-- Boba Cup Body -->
+    <path d="M 20,20 L 80,20 L 72,125 Q 50,132 28,125 Z" fill="url(#bobaCup)"/>
+    <!-- Lid Dome -->
+    <path d="M 15,20 C 15,-10 85,-10 85,20 Z" fill="#ffffff" opacity="0.9"/>
+    <!-- Pink Boba Straw -->
+    <line x1="50" y1="-30" x2="50" y2="120" stroke="#ff4d6d" stroke-width="7" stroke-linecap="round"/>
+    <line x1="50" y1="-30" x2="50" y2="120" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-dasharray="8,8"/>
+    <!-- Liquid Gradient -->
+    <path d="M 22,35 L 78,35 L 71,124 Q 50,130 29,124 Z" fill="#ff9ebb" opacity="0.6"/>
+    <!-- Tapioca Pearls -->
+    <circle cx="36" cy="116" r="6" fill="#6b3e2e"/>
+    <circle cx="49" cy="118" r="6" fill="#6b3e2e"/>
+    <circle cx="62" cy="115" r="6" fill="#6b3e2e"/>
+    <circle cx="42" cy="106" r="6" fill="#6b3e2e"/>
+    <circle cx="56" cy="107" r="6" fill="#6b3e2e"/>
+    <circle cx="37" cy="96" r="5" fill="#6b3e2e"/>
+    <circle cx="63" cy="98" r="5" fill="#6b3e2e"/>
+  </g>
+
+  <!-- Sweet Croissant on Plate -->
+  <g transform="translate(340, 260)">
+    <ellipse cx="40" cy="40" rx="36" ry="14" fill="#ffffff"/>
+    <ellipse cx="40" cy="38" rx="32" ry="11" fill="none" stroke="#ffccd5" stroke-width="1.5"/>
+    <path d="M 20,38 Q 40,22 60,38 Q 40,46 20,38 Z" fill="#f4a261"/>
+    <path d="M 32,32 Q 40,26 48,32" fill="none" stroke="#e76f51" stroke-width="2"/>
+  </g>
+
+  <!-- Floating Sparkles & Text Badge -->
+  <g transform="translate(250, 60)" text-anchor="middle">
+    <rect x="-140" y="-20" width="280" height="40" rx="20" fill="#ffffff" filter="drop-shadow(0 4px 10px rgba(255,105,135,0.2))"/>
+    <text y="6" font-family="'Quicksand', sans-serif" font-size="16" font-weight="700" fill="#e73868">☕ Cafe Talk & Endless Laughter ✨</text>
+  </g>
+</svg>

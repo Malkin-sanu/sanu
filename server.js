@@ -30,6 +30,28 @@ const server = http.createServer((req, res) => {
   fs.readFile(filePath, (err, content) => {
     if (err) {
       if (err.code === 'ENOENT') {
+        // Fallback: check subfolders if requested at root, or root if requested in subfolder
+        const altPaths = [
+          path.join(__dirname, 'css', safePath),
+          path.join(__dirname, 'js', safePath),
+          path.join(__dirname, 'assets', 'images', safePath),
+          path.join(__dirname, 'assets', 'images', 'gallery', safePath),
+          path.join(__dirname, path.basename(safePath))
+        ];
+
+        for (const alt of altPaths) {
+          if (fs.existsSync(alt) && fs.statSync(alt).isFile()) {
+            return fs.readFile(alt, (altErr, altContent) => {
+              if (!altErr) {
+                res.writeHead(200, { 'Content-Type': contentType });
+                return res.end(altContent);
+              }
+              res.writeHead(404, { 'Content-Type': 'text/plain' });
+              res.end('404 Not Found');
+            });
+          }
+        }
+
         res.writeHead(404, { 'Content-Type': 'text/plain' });
         res.end('404 Not Found');
       } else {

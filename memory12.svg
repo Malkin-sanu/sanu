@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg12" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffd166"/>
+      <stop offset="35%" stop-color="#f4a261"/>
+      <stop offset="65%" stop-color="#48cae4"/>
+      <stop offset="100%" stop-color="#0096c7"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="500" height="400" rx="16" fill="url(#bg12)"/>
+
+  <!-- Ocean Waves -->
+  <path d="M 0,220 Q 125,200 250,220 Q 375,200 500,220 L 500,400 L 0,400 Z" fill="#0077b6"/>
+  <path d="M 0,250 Q 125,230 250,250 Q 375,230 500,250 L 500,400 L 0,400 Z" fill="#023e8a"/>
+  <!-- Sea Foam -->
+  <path d="M 0,220 Q 125,200 250,220 Q 375,200 500,220" fill="none" stroke="#ffffff" stroke-width="4" opacity="0.8"/>
+  <path d="M 0,250 Q 125,230 250,250 Q 375,230 500,250" fill="none" stroke="#ffffff" stroke-width="3" opacity="0.8"/>
+
+  <!-- Golden Beach Sand -->
+  <path d="M 0,310 Q 250,270 500,310 L 500,400 L 0,400 Z" fill="#ffe8d6"/>
+  <path d="M 0,340 Q 250,300 500,340 L 500,400 L 0,400 Z" fill="#ddb892"/>
+
+  <!-- Beach Umbrella (Left) -->
+  <g transform="translate(130, 240)">
+    <line x1="0" y1="0" x2="-20" y2="110" stroke="#b08968" stroke-width="4" stroke-linecap="round"/>
+    <!-- Umbrella Canopy -->
+    <path d="M -60,0 C -60,-45 60,-45 60,0 Z" fill="#ff758f"/>
+    <path d="M -20,0 C -20,-45 20,-45 20,0 Z" fill="#ffffff"/>
+  </g>
+
+  <!-- Cute Starfish & Seashell on Sand (Right) -->
+  <g transform="translate(330, 330)">
+    <!-- Starfish -->
+    <polygon points="30,10 35,25 50,25 38,34 42,48 30,38 18,48 22,34 10,25 25,25" fill="#ff5c8a"/>
+    <circle cx="30" cy="30" r="3" fill="#ffffff" opacity="0.8"/>
+    <!-- Seashell -->
+    <circle cx="70" cy="35" r="14" fill="#ffffff"/>
+    <path d="M 60,35 Q 70,25 80,35" stroke="#f4a261" stroke-width="1.5" fill="none"/>
+  </g>
+
+  <!-- Title Badge -->
+  <g transform="translate(250, 48)" text-anchor="middle">
+    <rect x="-145" y="-18" width="290" height="36" rx="18" fill="#ffffff" filter="drop-shadow(0 4px 10px rgba(0,0,0,0.25))"/>
+    <text y="6" font-family="'Quicksand', sans-serif" font-size="14.5" font-weight="700" fill="#e73868">🌊 Beach Days, Ocean Waves & Sand 🏖️</text>
+  </g>
+</svg>

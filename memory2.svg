@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 400" width="100%" height="100%">
+  <defs>
+    <!-- Romantic Golden Hour Sunset Gradient -->
+    <linearGradient id="sunsetGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ff758f"/>
+      <stop offset="35%" stop-color="#ffb3c6"/>
+      <stop offset="70%" stop-color="#fed1a5"/>
+      <stop offset="100%" stop-color="#ffe5d9"/>
+    </linearGradient>
+    <radialGradient id="sunGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="1"/>
+      <stop offset="40%" stop-color="#fff1c5" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#ffb3c6" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Sky -->
+  <rect width="500" height="400" rx="16" fill="url(#sunsetGrad)"/>
+
+  <!-- Sun -->
+  <circle cx="250" cy="220" r="90" fill="url(#sunGlow)"/>
+
+  <!-- Fluffy Dreamy Clouds -->
+  <g fill="#ffffff" opacity="0.45">
+    <path d="M 50,180 Q 70,150 110,160 Q 140,140 170,165 Q 190,180 170,200 L 60,200 Z"/>
+    <path d="M 330,140 Q 360,110 400,125 Q 430,105 450,130 Q 470,150 440,170 L 340,170 Z"/>
+  </g>
+
+  <!-- Sunset Hill Silhouette -->
+  <path d="M 0,330 Q 250,290 500,340 L 500,400 L 0,400 Z" fill="#843b62" opacity="0.9"/>
+  <path d="M 0,350 Q 250,320 500,360 L 500,400 L 0,400 Z" fill="#4d194d"/>
+
+  <!-- Two Friends Silhouette Making Heart Hands -->
+  <g fill="#4d194d" transform="translate(140, 200)">
+    <!-- Friend 1 (Left) -->
+    <circle cx="50" cy="35" r="16"/>
+    <!-- Cute Ponytail -->
+    <path d="M 36,35 Q 20,40 25,60 Q 35,55 38,45 Z"/>
+    <!-- Body -->
+    <path d="M 35,55 Q 50,52 65,55 L 75,130 L 25,130 Z"/>
+
+    <!-- Friend 2 (Right) -->
+    <circle cx="170" cy="35" r="16"/>
+    <!-- Cute Bun Hair -->
+    <circle cx="170" cy="16" r="8"/>
+    <!-- Body -->
+    <path d="M 155,55 Q 170,52 185,55 L 195,130 L 145,130 Z"/>
+
+    <!-- Arms meeting in middle to form a big heart outline! -->
+    <!-- Left Arm -->
+    <path d="M 60,65 Q 85,55 102,40 Q 107,35 110,48 Q 108,62 90,82 L 65,95 Z"/>
+    <!-- Right Arm -->
+    <path d="M 160,65 Q 135,55 118,40 Q 113,35 110,48 Q 112,62 130,82 L 155,95 Z"/>
+
+    <!-- Glowing Heart between hands -->
+    <g transform="translate(110, 42)">
+      <path d="M 0,-8 C -8,-20 -24,-8 0,16 C 24,-8 8,-20 0,-8 Z" fill="#ffffff" filter="drop-shadow(0 0 8px #ff4d6d)"/>
+    </g>
+  </g>
+
+  <!-- Flying Birds -->
+  <g stroke="#ffffff" stroke-width="2" fill="none" opacity="0.8">
+    <path d="M 110,90 Q 118,80 126,90 Q 134,80 142,90"/>
+    <path d="M 140,110 Q 146,102 152,110 Q 158,102 164,110"/>
+  </g>
+
+  <!-- Title Badge -->
+  <g transform="translate(250, 50)" text-anchor="middle">
+    <rect x="-140" y="-18" width="280" height="36" rx="18" fill="#ffffff" filter="drop-shadow(0 4px 12px rgba(255,105,135,0.25))"/>
+    <text y="6" font-family="'Quicksand', sans-serif" font-size="15" font-weight="700" fill="#e73868">🌅 Golden Hour & Sunset Chasing ✨</text>
+  </g>
+</svg>

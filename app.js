@@ -469,12 +469,18 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // 3. Try standard gallery folder conventions: photo{id}.ext and {id}.ext
+    // 3. Try standard gallery conventions in BOTH root and subfolders
     const id = mem.id;
     if (id) {
       SUPPORTED_EXTENSIONS.forEach(ext => {
+        // Direct root (matches flat GitHub Pages deployment)
+        add(`photo${id}.${ext}`);
+        add(`${id}.${ext}`);
+        // Subfolders (matches nested deployment)
         add(`assets/images/gallery/photo${id}.${ext}`);
         add(`assets/images/gallery/${id}.${ext}`);
+        add(`assets/images/photo${id}.${ext}`);
+        add(`assets/images/${id}.${ext}`);
       });
     }
 
@@ -499,8 +505,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (imgEl._candidates && imgEl._candidateIndex < imgEl._candidates.length) {
       imgEl.src = imgEl._candidates[imgEl._candidateIndex];
     } else {
-      // All 4 extensions failed, display fallback illustration
-      imgEl.onerror = null;
+      // Try subfolder fallback if root fallback fails
+      imgEl.onerror = function() {
+        imgEl.onerror = null;
+        if (fallbackSrc.indexOf('assets') === -1) {
+          imgEl.src = `assets/images/${fallbackSrc}`;
+        }
+      };
       imgEl.src = fallbackSrc;
       mem.activeSrc = fallbackSrc;
     }
@@ -516,7 +527,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (galleryGrid && config.memories) {
     galleryGrid.innerHTML = config.memories.map((mem, index) => {
-      const fallbackSrc = mem.fallback || `assets/images/memory${index + 1}.svg`;
+      const fallbackSrc = mem.fallback || `memory${index + 1}.svg`;
       const initialSrc = mem.activeSrc || mem.image;
       const isPriority = index < 6;
       return `
@@ -582,7 +593,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!mem) return;
 
     if (lightboxImg) {
-      const fallbackSrc = mem.fallback || `assets/images/memory${index + 1}.svg`;
+      const fallbackSrc = mem.fallback || `memory${index + 1}.svg`;
       const activeSrc = mem.activeSrc || mem.image;
 
       lightboxImg.decoding = 'async';
@@ -598,7 +609,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (lightboxImg._candidates && lightboxImg._candidateIndex < lightboxImg._candidates.length) {
           lightboxImg.src = lightboxImg._candidates[lightboxImg._candidateIndex];
         } else {
-          lightboxImg.onerror = null;
+          lightboxImg.onerror = function() {
+            lightboxImg.onerror = null;
+            if (fallbackSrc.indexOf('assets') === -1) {
+              lightboxImg.src = `assets/images/${fallbackSrc}`;
+            }
+          };
           lightboxImg.src = fallbackSrc;
         }
       };

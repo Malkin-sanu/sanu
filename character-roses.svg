@@ -1,0 +1,147 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="100%" height="100%">
+  <defs>
+    <!-- Soft gradients -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff5f7"/>
+      <stop offset="100%" stop-color="#ffe3ec"/>
+    </linearGradient>
+    <linearGradient id="roseGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff758f"/>
+      <stop offset="100%" stop-color="#e63946"/>
+    </linearGradient>
+    <linearGradient id="roseGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff8fa3"/>
+      <stop offset="100%" stop-color="#ff4d6d"/>
+    </linearGradient>
+    <linearGradient id="roseGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffb3c1"/>
+      <stop offset="100%" stop-color="#ff758f"/>
+    </linearGradient>
+    <linearGradient id="bearGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#fff0f5"/>
+    </linearGradient>
+    <linearGradient id="ribbonGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ff4d6d"/>
+      <stop offset="100%" stop-color="#ff758f"/>
+    </linearGradient>
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Background Soft Circle with Glow -->
+  <circle cx="120" cy="120" r="105" fill="url(#bgGrad)" stroke="#ffb3c6" stroke-width="2" stroke-dasharray="6,4"/>
+
+  <!-- Floating Sparkles and Tiny Hearts around -->
+  <g fill="#ff758f" opacity="0.85">
+    <!-- Top left heart -->
+    <path d="M 45,55 C 45,47 55,47 55,55 C 55,63 45,70 45,70 C 45,70 35,63 35,55 C 35,47 45,47 45,55 Z" transform="scale(0.8) translate(10, 10)"/>
+    <!-- Top right heart -->
+    <path d="M 195,50 C 195,43 203,43 203,50 C 203,56 195,62 195,62 C 195,62 187,56 187,50 C 187,43 195,43 195,50 Z"/>
+    <!-- Sparkles (4-point stars) -->
+    <path d="M 60,100 Q 60,105 55,105 Q 60,105 60,110 Q 60,105 65,105 Q 60,105 60,100 Z" fill="#ffb703"/>
+    <path d="M 185,115 Q 185,120 180,120 Q 185,120 185,125 Q 185,120 190,120 Q 185,120 185,115 Z" fill="#ffb703"/>
+    <path d="M 115,28 Q 115,33 110,33 Q 115,33 115,38 Q 115,33 120,33 Q 115,33 115,28 Z" fill="#ff758f"/>
+  </g>
+
+  <!-- Character (Cute Chubby Bear / Bunny Chibi) -->
+  <g transform="translate(0, 5)">
+    <!-- Ears -->
+    <!-- Left ear -->
+    <ellipse cx="80" cy="72" rx="19" ry="24" fill="url(#bearGrad)" stroke="#ffccd5" stroke-width="2.5" transform="rotate(-15, 80, 72)"/>
+    <ellipse cx="80" cy="72" rx="11" ry="15" fill="#ffccd5" transform="rotate(-15, 80, 72)"/>
+    <!-- Right ear -->
+    <ellipse cx="160" cy="72" rx="19" ry="24" fill="url(#bearGrad)" stroke="#ffccd5" stroke-width="2.5" transform="rotate(15, 160, 72)"/>
+    <ellipse cx="160" cy="72" rx="11" ry="15" fill="#ffccd5" transform="rotate(15, 160, 72)"/>
+
+    <!-- Cute Ear Bow on Left Ear -->
+    <g transform="translate(68, 55)">
+      <ellipse cx="-7" cy="0" rx="9" ry="6" fill="url(#ribbonGrad)" transform="rotate(-20)"/>
+      <ellipse cx="7" cy="0" rx="9" ry="6" fill="url(#ribbonGrad)" transform="rotate(20)"/>
+      <circle cx="0" cy="0" r="4.5" fill="#ff4d6d"/>
+      <path d="M -3,4 L -6,14 M 3,4 L 6,14" stroke="#ff4d6d" stroke-width="2.5" stroke-linecap="round"/>
+    </g>
+
+    <!-- Bear Body -->
+    <ellipse cx="120" cy="165" rx="46" ry="38" fill="url(#bearGrad)" stroke="#ffccd5" stroke-width="2.5"/>
+
+    <!-- Bear Head -->
+    <ellipse cx="120" cy="115" rx="48" ry="43" fill="url(#bearGrad)" stroke="#ffccd5" stroke-width="2.5"/>
+
+    <!-- Eyes (Big glossy cartoon eyes) -->
+    <ellipse cx="102" cy="112" rx="5.5" ry="7.5" fill="#33272a"/>
+    <circle cx="100.5" cy="109" r="2.5" fill="#ffffff"/>
+    <circle cx="104.5" cy="115" r="1.2" fill="#ffffff"/>
+
+    <ellipse cx="138" cy="112" rx="5.5" ry="7.5" fill="#33272a"/>
+    <circle cx="136.5" cy="109" r="2.5" fill="#ffffff"/>
+    <circle cx="140.5" cy="115" r="1.2" fill="#ffffff"/>
+
+    <!-- Blushing Pink Cheeks -->
+    <ellipse cx="88" cy="123" rx="10" ry="6" fill="#ff85a1" opacity="0.6" filter="url(#softGlow)"/>
+    <ellipse cx="152" cy="123" rx="10" ry="6" fill="#ff85a1" opacity="0.6" filter="url(#softGlow)"/>
+
+    <!-- Cute Snout & Nose & Mouth -->
+    <ellipse cx="120" cy="122" rx="12" ry="9" fill="#ffffff"/>
+    <path d="M 116.5,119 C 117.5,116 122.5,116 123.5,119 C 124,121 121,123.5 120,123.5 C 119,123.5 116,121 116.5,119 Z" fill="#ff5c8a"/>
+    <path d="M 120,123.5 L 120,127 M 116,127 Q 120,130 120,127 Q 120,130 124,127" stroke="#8c727a" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+
+    <!-- Paws holding bouquet -->
+    <!-- Left paw -->
+    <ellipse cx="85" cy="160" rx="11" ry="9" fill="#ffffff" stroke="#ffccd5" stroke-width="2" transform="rotate(25, 85, 160)"/>
+    <!-- Right paw -->
+    <ellipse cx="155" cy="160" rx="11" ry="9" fill="#ffffff" stroke="#ffccd5" stroke-width="2" transform="rotate(-25, 155, 160)"/>
+
+    <!-- BOUQUET OF ROSES -->
+    <g transform="translate(0, 5)">
+      <!-- Bouquet Wrapping Paper -->
+      <path d="M 96,170 L 120,205 L 144,170 Q 120,175 96,170 Z" fill="#ffe5ec" stroke="#ffb3c6" stroke-width="2"/>
+      <path d="M 96,170 L 120,195 L 144,170" fill="none" stroke="#ffccd5" stroke-width="1.5" stroke-dasharray="3,3"/>
+      <!-- Bouquet Ribbon Bow -->
+      <ellipse cx="114" cy="190" rx="7" ry="5" fill="#ff4d6d" transform="rotate(-20, 114, 190)"/>
+      <ellipse cx="126" cy="190" rx="7" ry="5" fill="#ff4d6d" transform="rotate(20, 126, 190)"/>
+      <circle cx="120" cy="190" r="3.5" fill="#e63946"/>
+      <path d="M 118,193 L 113,205 M 122,193 L 127,205" stroke="#ff4d6d" stroke-width="2.5" stroke-linecap="round"/>
+
+      <!-- Rose Leaves -->
+      <path d="M 85,150 Q 75,142 85,135 Q 95,142 85,150 Z" fill="#70c1b3"/>
+      <path d="M 155,150 Q 165,142 155,135 Q 145,142 155,150 Z" fill="#70c1b3"/>
+      <path d="M 120,138 Q 120,130 115,134 Q 120,140 120,138 Z" fill="#70c1b3"/>
+
+      <!-- Roses in Bouquet -->
+      <!-- Center Main Rose -->
+      <g transform="translate(120, 152)">
+        <circle cx="0" cy="0" r="14" fill="url(#roseGrad1)"/>
+        <!-- Rose Petals Swirl -->
+        <path d="M -5,-3 Q 0,-10 5,-3 Q 10,4 0,8 Q -10,4 -5,-3" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" opacity="0.85"/>
+        <circle cx="0" cy="0" r="4" fill="#ffffff" opacity="0.7"/>
+      </g>
+
+      <!-- Left Rose -->
+      <g transform="translate(102, 156)">
+        <circle cx="0" cy="0" r="12" fill="url(#roseGrad2)"/>
+        <path d="M -4,-2 Q 0,-8 4,-2 Q 8,3 0,6 Q -8,3 -4,-2" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" opacity="0.85"/>
+      </g>
+
+      <!-- Right Rose -->
+      <g transform="translate(138, 156)">
+        <circle cx="0" cy="0" r="12" fill="url(#roseGrad2)"/>
+        <path d="M -4,-2 Q 0,-8 4,-2 Q 8,3 0,6 Q -8,3 -4,-2" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" opacity="0.85"/>
+      </g>
+
+      <!-- Top Rose -->
+      <g transform="translate(120, 138)">
+        <circle cx="0" cy="0" r="10" fill="url(#roseGrad3)"/>
+        <path d="M -3,-2 Q 0,-6 3,-2 Q 6,2 0,5 Q -6,2 -3,-2" fill="none" stroke="#ffffff" stroke-width="1.4" stroke-linecap="round" opacity="0.9"/>
+      </g>
+
+      <!-- Bottom Rose -->
+      <g transform="translate(120, 168)">
+        <circle cx="0" cy="0" r="11" fill="url(#roseGrad1)"/>
+        <path d="M -3,-2 Q 0,-7 3,-2 Q 7,3 0,5 Q -7,3 -3,-2" fill="none" stroke="#ffffff" stroke-width="1.4" stroke-linecap="round" opacity="0.85"/>
+      </g>
+    </g>
+  </g>
+</svg>

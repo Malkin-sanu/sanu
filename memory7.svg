@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg7" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff0f5"/>
+      <stop offset="50%" stop-color="#ffe5ec"/>
+      <stop offset="100%" stop-color="#fbc3d1"/>
+    </linearGradient>
+    <linearGradient id="coneGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f4a261"/>
+      <stop offset="100%" stop-color="#e76f51"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="500" height="400" rx="16" fill="url(#bg7)"/>
+
+  <!-- Decorative Sparkles and Circles -->
+  <g fill="#ff758f" opacity="0.2">
+    <circle cx="60" cy="70" r="18"/>
+    <circle cx="430" cy="90" r="24"/>
+    <circle cx="400" cy="320" r="16"/>
+    <circle cx="90" cy="330" r="22"/>
+  </g>
+
+  <!-- Ice Cream Cone & Sweet Treats (Center) -->
+  <g transform="translate(190, 110)">
+    <!-- Waffle Cone -->
+    <polygon points="60,250 15,130 105,130" fill="url(#coneGrad)"/>
+    <!-- Cone Grid Lines -->
+    <path d="M 30,150 L 90,210 M 45,130 L 75,230 M 90,150 L 30,210 M 75,130 L 45,230" stroke="#d95d39" stroke-width="2" stroke-linecap="round"/>
+
+    <!-- Ice Cream Scoop 1 (Bottom - Mint/Pastel) -->
+    <circle cx="60" cy="115" r="48" fill="#70c1b3"/>
+    <!-- Ice Cream Scoop 2 (Middle - Strawberry Pink) -->
+    <circle cx="60" cy="65" r="44" fill="#ff758f"/>
+    <!-- Ice Cream Scoop 3 (Top - Vanilla Cream) -->
+    <circle cx="60" cy="22" r="38" fill="#ffffff"/>
+
+    <!-- Glaze Drips -->
+    <path d="M 20,70 Q 30,95 40,75 Q 50,100 60,80 Q 70,105 80,75 Q 90,95 100,70" fill="none" stroke="#ff4d6d" stroke-width="5" stroke-linecap="round"/>
+
+    <!-- Sprinkles on Top -->
+    <rect x="42" y="5" width="4" height="10" rx="2" fill="#ffd166" transform="rotate(25, 42, 5)"/>
+    <rect x="65" y="10" width="4" height="10" rx="2" fill="#ff4d6d" transform="rotate(-30, 65, 10)"/>
+    <rect x="78" y="25" width="4" height="10" rx="2" fill="#70c1b3" transform="rotate(45, 78, 25)"/>
+    <rect x="35" y="30" width="4" height="10" rx="2" fill="#ff758f" transform="rotate(-15, 35, 30)"/>
+
+    <!-- Bright Red Cherry on Top -->
+    <circle cx="60" cy="-22" r="16" fill="#e63946"/>
+    <path d="M 60,-38 Q 75,-55 85,-48" stroke="#38b000" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <ellipse cx="55" cy="-26" rx="4" ry="2" fill="#ffffff" opacity="0.8"/>
+  </g>
+
+  <!-- Title Badge -->
+  <g transform="translate(250, 48)" text-anchor="middle">
+    <rect x="-145" y="-18" width="290" height="36" rx="18" fill="#ffffff" filter="drop-shadow(0 4px 10px rgba(255,105,135,0.25))"/>
+    <text y="6" font-family="'Quicksand', sans-serif" font-size="14.5" font-weight="700" fill="#e73868">🍦 Late Night Dessert & Ice Cream Runs ✨</text>
+  </g>
+</svg>
