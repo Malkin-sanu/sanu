@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="description" content="A heartfelt handwritten birthday letter for Sanuu.">
+  <meta name="theme-color" content="#ffe3ec">
+  <title>A Special Birthday Letter 💌 - Happy Birthday Sanuu! 💖✨</title>
+
+  <!-- Google Fonts for Dreamy Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Dancing+Script:wght@600;700&family=Nunito:wght@400;600;700;800;900&family=Quicksand:wght@500;600;700&family=Sacramento&display=swap" rel="stylesheet">
+
+  <!-- Shared Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Background Particle & Confetti Canvas -->
+  <canvas id="particleCanvas" class="particle-canvas-layer"></canvas>
+
+  <!-- Floating Audio Mute / Unmute Control -->
+  <aside class="floating-controls">
+    <button id="musicToggleBtn" class="floating-music-btn" aria-label="Toggle background music" title="Toggle background music">
+      <span class="music-icon-disc">🔇</span>
+    </button>
+  </aside>
+
+  <!-- Navigation / Progress Tracker -->
+  <nav class="nav-progress-wrapper" aria-label="Surprise progress">
+    <div class="nav-track" id="navTrack">
+      <a href="index.html" class="nav-dot completed" data-step="1" title="Age Lock" aria-label="Go to Age Lock">
+        <span class="dot-icon">🔐</span>
+        <span class="dot-label">Lock</span>
+      </a>
+      <div class="nav-line"></div>
+      <a href="letter.html" class="nav-dot active completed" data-step="2" title="Birthday Letter" aria-label="Go to Birthday Letter">
+        <span class="dot-icon">💌</span>
+        <span class="dot-label">Letter</span>
+      </a>
+      <div class="nav-line"></div>
+      <a href="reasons.html" class="nav-dot" data-step="3" title="Why You're Special" aria-label="Go to Why You're Special">
+        <span class="dot-icon">❤️</span>
+        <span class="dot-label">Reasons</span>
+      </a>
+      <div class="nav-line"></div>
+      <a href="gallery.html" class="nav-dot" data-step="4" title="Our Memories" aria-label="Go to Our Memories">
+        <span class="dot-icon">📸</span>
+        <span class="dot-label">Memories</span>
+      </a>
+      <div class="nav-line"></div>
+      <a href="final.html" class="nav-dot" data-step="5" title="Birthday Surprise" aria-label="Go to Birthday Surprise">
+        <span class="dot-icon">🎂</span>
+        <span class="dot-label">Surprise</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Main Content Presentation -->
+  <main class="main-content-flow">
+
+    <!-- ========================================================
+         PAGE 2: A SPECIAL BIRTHDAY LETTER 💌
+         ======================================================== -->
+    <section id="section-letter" class="page-section active" aria-hidden="false">
+      <div class="section-container letter-section-container">
+        
+        <header class="section-title-wrap">
+          <span class="cute-tag">FOR MY BEST FRIEND 💕</span>
+          <h2 class="section-main-heading">You Have a Special Letter!</h2>
+          <p class="section-sub-heading">Tap the envelope to open and read what's inside 💌</p>
+        </header>
+
+        <!-- 3D Interactive Envelope -->
+        <div class="envelope-scene-wrapper">
+          <div class="envelope-container" id="birthdayEnvelope" tabindex="0" role="button" aria-label="Open birthday envelope">
+            
+            <!-- Envelope Flap (Top Triangular Fold) -->
+            <div class="envelope-flap"></div>
+
+            <!-- Envelope Wax Seal Button -->
+            <div class="envelope-seal" id="letterSealBtn" title="Break seal and open">
+              <span class="seal-heart">❤️</span>
+              <span class="seal-text">Open</span>
+            </div>
+
+            <!-- Envelope Pocket / Front Body -->
+            <div class="envelope-pocket">
+              <div class="envelope-pocket-left"></div>
+              <div class="envelope-pocket-right"></div>
+              <div class="envelope-pocket-bottom"></div>
+            </div>
+
+            <!-- Handwritten-Style Birthday Letter (Slides out smoothly) -->
+            <article class="letter-paper" id="letterPaper">
+              <div class="letter-stamp">🎂 Special Delivery</div>
+              <div class="letter-inner-content">
+                <h3 class="letter-salutation" id="letterSalutation">My Dearest Sanuu,</h3>
+                
+                <div class="letter-body" id="letterBodyContainer">
+                  <!-- Populated dynamically from config.letter.paragraphs -->
+                </div>
+
+                <div class="letter-signature-block">
+                  <p class="letter-closing" id="letterClosing">Forever & Always Your Best Friend,</p>
+                  <p class="letter-signature" id="letterSignature">With all my love ❤️</p>
+                </div>
+
+                <!-- Continue Button -->
+                <div class="letter-btn-row">
+                  <a href="reasons.html" class="pill-btn next-step-btn" data-next-section="3">
+                    <span>Continue to Why You're Special 🌸 ➔</span>
+                  </a>
+                </div>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Shared Scripts -->
+  <script src="js/config.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/particles.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

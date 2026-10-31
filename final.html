@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="description" content="Happy Birthday Sanuu! A grand celebration with cakes, candles, wishes, and love.">
+  <meta name="theme-color" content="#ffe3ec">
+  <title>Happy Birthday Surprise! 🎂 - Happy Birthday Sanuu! 💖✨</title>
+
+  <!-- Google Fonts for Dreamy Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Dancing+Script:wght@600;700&family=Nunito:wght@400;600;700;800;900&family=Quicksand:wght@500;600;700&family=Sacramento&display=swap" rel="stylesheet">
+
+  <!-- Shared Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Background Particle & Confetti Canvas -->
+  <canvas id="particleCanvas" class="particle-canvas-layer"></canvas>
+
+  <!-- Floating Audio Mute / Unmute Control -->
+  <aside class="floating-controls">
+    <button id="musicToggleBtn" class="floating-music-btn" aria-label="Toggle background music" title="Toggle background music">
+      <span class="music-icon-disc">🔇</span>
+    </button>
+  </aside>
+
+  <!-- Navigation / Progress Tracker -->
+  <nav class="nav-progress-wrapper" aria-label="Surprise progress">
+    <div class="nav-track" id="navTrack">
+      <a href="index.html" class="nav-dot completed" data-step="1" title="Age Lock" aria-label="Go to Age Lock">
+        <span class="dot-icon">🔐</span>
+        <span class="dot-label">Lock</span>
+      </a>
+      <div class="nav-line"></div>
+      <a href="letter.html" class="nav-dot completed" data-step="2" title="Birthday Letter" aria-label="Go to Birthday Letter">
+        <span class="dot-icon">💌</span>
+        <span class="dot-label">Letter</span>
+      </a>
+      <div class="nav-line"></div>
+      <a href="reasons.html" class="nav-dot completed" data-step="3" title="Why You're Special" aria-label="Go to Why You're Special">
+        <span class="dot-icon">❤️</span>
+        <span class="dot-label">Reasons</span>
+      </a>
+      <div class="nav-line"></div>
+      <a href="gallery.html" class="nav-dot completed" data-step="4" title="Our Memories" aria-label="Go to Our Memories">
+        <span class="dot-icon">📸</span>
+        <span class="dot-label">Memories</span>
+      </a>
+      <div class="nav-line"></div>
+      <a href="final.html" class="nav-dot active completed" data-step="5" title="Birthday Surprise" aria-label="Go to Birthday Surprise">
+        <span class="dot-icon">🎂</span>
+        <span class="dot-label">Surprise</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Main Content Presentation -->
+  <main class="main-content-flow">
+
+    <!-- ========================================================
+         PAGE 5: THE FINAL BIRTHDAY SURPRISE 🎂
+         ======================================================== -->
+    <section id="section-surprise" class="page-section active" aria-hidden="false">
+      <div class="section-container surprise-section-container">
+        
+        <header class="section-title-wrap celebration-header">
+          <span class="celebration-badge">🎉 TIME TO CELEBRATE 👑</span>
+          <h1 id="surpriseHeading" class="grand-birthday-heading">HAPPY BIRTHDAY SANUU!</h1>
+          <p id="candlePromptText" class="candle-prompt-text">Tap the candles or button to blow them out! 🕯️💨</p>
+        </header>
+
+        <!-- Big Animated Birthday Cake -->
+        <div class="cake-stage-wrapper">
+          <div class="birthday-cake" id="birthdayCake" title="Tap cake to blow candles">
+            
+            <!-- Candles on Top -->
+            <div class="cake-candles-row">
+              <div class="candle">
+                <div class="candle-flame"></div>
+                <div class="candle-stick candle-stripe-1"></div>
+              </div>
+              <div class="candle candle-center">
+                <div class="candle-flame"></div>
+                <div class="candle-stick candle-stripe-2"></div>
+              </div>
+              <div class="candle">
+                <div class="candle-flame"></div>
+                <div class="candle-stick candle-stripe-3"></div>
+              </div>
+            </div>
+
+            <!-- Top Layer -->
+            <div class="cake-tier tier-top">
+              <div class="tier-frosting-drips"></div>
+              <div class="tier-strawberry">🍓</div>
+              <div class="tier-cream-rosettes"></div>
+            </div>
+
+            <!-- Middle Layer -->
+            <div class="cake-tier tier-middle">
+              <div class="tier-frosting-drips"></div>
+              <div class="tier-decorations">
+                <span>🌸</span><span>💖</span><span>🌸</span>
+              </div>
+            </div>
+
+            <!-- Bottom Layer -->
+            <div class="cake-tier tier-bottom">
+              <div class="tier-frosting-drips"></div>
+              <div class="tier-pearls"></div>
+            </div>
+
+            <!-- Cake Plate Stand -->
+            <div class="cake-plate"></div>
+          </div>
+        </div>
+
+        <!-- Candle Blow Button -->
+        <div class="candle-btn-wrap">
+          <button type="button" id="candleBlowBtn" class="pill-btn candle-action-btn">
+            <span>Make a Wish & Blow! 🕯️💨</span>
+          </button>
+        </div>
+
+        <!-- Personalized Birthday Wish Card -->
+        <article class="wish-card">
+          <div class="wish-card-ribbon">💝</div>
+          <h2 id="wishCardTitle" class="wish-card-title">A Birthday Wish For You</h2>
+          <p id="wishCardText" class="wish-card-text">
+            Dua hai ki tumhari life ka ye naya saal tumhare liye dher saari sachchi khushiyan, achhi health, exciting adventures, unforgettable love aur tumhare dil mein chhupe har ek sapne ko poora karne ke naye mauke lekar aaye.
+          </p>
+          <blockquote id="finalQuote" class="wish-quote">
+            “Good friends are like stars — you don't always see them, but you know they're always there hehehe.”
+          </blockquote>
+          <p id="finalSignature" class="wish-signature">
+           Happy Birthday, Bestie! Forever grateful for you 💕  kiya tum kabhi mujhe xor ke to nhi jaogi na?
+          </p>
+        </article>
+
+        <!-- Final Action Buttons -->
+        <div class="final-actions-row">
+          <button type="button" id="sendHugBtn" class="pill-btn secondary-pill">
+            <span>Send Birthday Hug 🤗💖</span>
+          </button>
+          <a href="letter.html" id="restartBtn" class="pill-btn restart-action-btn">
+            <span>Replay Our Memories 🔄</span>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Shared Scripts -->
+  <script src="js/config.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/particles.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

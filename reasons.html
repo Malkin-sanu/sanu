@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="description" content="All the reasons why Sanuu is the most special best friend in the world.">
+  <meta name="theme-color" content="#ffe3ec">
+  <title>Why You're Special ❤️ - Happy Birthday Sanuu! 💖✨</title>
+
+  <!-- Google Fonts for Dreamy Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Dancing+Script:wght@600;700&family=Nunito:wght@400;600;700;800;900&family=Quicksand:wght@500;600;700&family=Sacramento&display=swap" rel="stylesheet">
+
+  <!-- Shared Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Background Particle & Confetti Canvas -->
+  <canvas id="particleCanvas" class="particle-canvas-layer"></canvas>
+
+  <!-- Floating Audio Mute / Unmute Control -->
+  <aside class="floating-controls">
+    <button id="musicToggleBtn" class="floating-music-btn" aria-label="Toggle background music" title="Toggle background music">
+      <span class="music-icon-disc">🔇</span>
+    </button>
+  </aside>
+
+  <!-- Navigation / Progress Tracker -->
+  <nav class="nav-progress-wrapper" aria-label="Surprise progress">
+    <div class="nav-track" id="navTrack">
+      <a href="index.html" class="nav-dot completed" data-step="1" title="Age Lock" aria-label="Go to Age Lock">
+        <span class="dot-icon">🔐</span>
+        <span class="dot-label">Lock</span>
+      </a>
+      <div class="nav-line"></div>
+      <a href="letter.html" class="nav-dot completed" data-step="2" title="Birthday Letter" aria-label="Go to Birthday Letter">
+        <span class="dot-icon">💌</span>
+        <span class="dot-label">Letter</span>
+      </a>
+      <div class="nav-line"></div>
+      <a href="reasons.html" class="nav-dot active completed" data-step="3" title="Why You're Special" aria-label="Go to Why You're Special">
+        <span class="dot-icon">❤️</span>
+        <span class="dot-label">Reasons</span>
+      </a>
+      <div class="nav-line"></div>
+      <a href="gallery.html" class="nav-dot" data-step="4" title="Our Memories" aria-label="Go to Our Memories">
+        <span class="dot-icon">📸</span>
+        <span class="dot-label">Memories</span>
+      </a>
+      <div class="nav-line"></div>
+      <a href="final.html" class="nav-dot" data-step="5" title="Birthday Surprise" aria-label="Go to Birthday Surprise">
+        <span class="dot-icon">🎂</span>
+        <span class="dot-label">Surprise</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Main Content Presentation -->
+  <main class="main-content-flow">
+
+    <!-- ========================================================
+         PAGE 3: WHY YOU ARE SPECIAL ❤️
+         ======================================================== -->
+    <section id="section-reasons" class="page-section active" aria-hidden="false">
+      <div class="section-container reasons-section-container">
+        
+        <header class="section-title-wrap">
+          <span class="cute-tag">FROM THE BOTTOM OF MY HEART ✨</span>
+          <h2 class="section-main-heading">Why Do I Like You?</h2>
+          <p class="section-sub-heading">A few of the million reasons why you're my favorite human in the whole universe 🌟</p>
+          
+          <div class="reasons-control-bar">
+            <div id="revealedBadge" class="revealed-badge">0 of 6 revealed 💕</div>
+            <button type="button" id="revealAllBtn" class="mini-pill-btn">✨ Reveal All Reasons</button>
+          </div>
+        </header>
+
+        <!-- Reasons Cards Grid -->
+        <div class="reasons-grid" id="reasonsGrid">
+          <!-- Populated dynamically from config.reasons -->
+        </div>
+
+        <!-- Special Emotional Closing Message Card -->
+        <div class="reasons-final-message-box" id="reasonsFinalMessage" aria-label="Special closing message">
+          <div class="final-msg-bubble bubble-top-left" aria-hidden="true">💖</div>
+          <div class="final-msg-bubble bubble-top-right" aria-hidden="true">✨</div>
+          <div class="final-msg-bubble bubble-bottom-left" aria-hidden="true">🌸</div>
+          <div class="final-msg-bubble bubble-bottom-right" aria-hidden="true">💕</div>
+
+          <div class="final-message-header">
+            <span class="final-message-badge">FROM MY HEART TO YOURS 💌</span>
+          </div>
+
+          <p class="final-message-text" id="finalMessageText">
+            “And honestly, 6 reasons toh sirf shuruaat hain. I could write a thousand reasons, and still they wouldn't be enough to explain how special you are to me. 🥹❤️”
+          </p>
+
+          <div class="final-message-divider">
+            <span class="divider-sparkle">✨</span>
+            <span class="divider-text">Forever & Always Special To Me</span>
+            <span class="divider-sparkle">✨</span>
+          </div>
+        </div>
+
+        <!-- Continue Button -->
+        <div class="section-continue-row">
+          <a href="gallery.html" class="pill-btn next-step-btn" data-next-section="4">
+            <span>Continue to Photo Gallery 📸 ➔</span>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Shared Scripts -->
+  <script src="js/config.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/particles.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

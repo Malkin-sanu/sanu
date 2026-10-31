@@ -1,0 +1,198 @@
+/**
+ * ====================================================================
+ * ✨ DREAMY ANIMATIONS & KEYFRAMES
+ * ====================================================================
+ */
+
+/* Section Transition Fade & Slide */
+@keyframes sectionFadeSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(24px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Keypad Input Digit Pop */
+@keyframes digitPop {
+  0% {
+    transform: scale(0.7);
+    opacity: 0.5;
+  }
+  60% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Error Shake */
+@keyframes shakeX {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  20%, 60% {
+    transform: translateX(-8px);
+  }
+  40%, 80% {
+    transform: translateX(8px);
+  }
+}
+
+.shake-anim {
+  animation: shakeX 0.5s ease-in-out;
+}
+
+/* Bounce In */
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.12);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Soft Floating Avatar */
+@keyframes gentleFloat {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(1.5deg);
+  }
+}
+
+/* Twinkle Sparkles */
+@keyframes sparkleTwinkle {
+  0%, 100% {
+    transform: scale(0.8) rotate(0deg);
+    opacity: 0.4;
+  }
+  50% {
+    transform: scale(1.25) rotate(180deg);
+    opacity: 1;
+    filter: drop-shadow(0 0 6px #ff758f);
+  }
+}
+
+/* Pulse Glow on Music / Highlights */
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 8px 25px rgba(255, 77, 109, 0.4);
+  }
+  50% {
+    box-shadow: 0 10px 35px rgba(255, 77, 109, 0.7);
+  }
+}
+
+/* Floating Music Note */
+@keyframes floatNote {
+  0% {
+    transform: translateY(0) scale(0.8);
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-20px) translateX(8px) scale(1.2);
+    opacity: 0;
+  }
+}
+
+/* Rotating Vinyl Disc */
+.music-icon-disc.spinning {
+  display: inline-block;
+  animation: spinSlow 3.5s linear infinite;
+}
+
+@keyframes spinSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Candle Flame Flickering */
+@keyframes candleFlicker {
+  0% {
+    transform: scale(1) rotate(-1deg);
+    filter: drop-shadow(0 0 8px #ffb703);
+  }
+  25% {
+    transform: scale(1.08, 0.94) rotate(1.5deg);
+    filter: drop-shadow(0 0 12px #ff4d6d);
+  }
+  50% {
+    transform: scale(0.96, 1.05) rotate(-1.5deg);
+    filter: drop-shadow(0 0 10px #ffb703);
+  }
+  75% {
+    transform: scale(1.05, 0.98) rotate(1deg);
+    filter: drop-shadow(0 0 14px #ff006e);
+  }
+  100% {
+    transform: scale(1.02, 1.02) rotate(0deg);
+    filter: drop-shadow(0 0 11px #ffd166);
+  }
+}
+
+/* Gentle Pulse on Ribbons and Badges */
+@keyframes gentlePulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.06);
+  }
+}
+
+/* Paper Crease Open Animation */
+@keyframes paperCreaseOpen {
+  0% {
+    transform: translateY(60px) scale(0.85);
+    opacity: 0.2;
+  }
+  50% {
+    transform: translateY(-90px) scale(1.04);
+  }
+  100% {
+    transform: translateY(-80px) scale(1);
+    opacity: 1;
+  }
+}
+
+/* Dialog Fade In */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Dialog Scale Up */
+@keyframes scaleUp {
+  0% {
+    transform: scale(0.88);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

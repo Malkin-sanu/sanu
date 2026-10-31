@@ -1,0 +1,371 @@
+/**
+ * ====================================================================
+ * 📱 MOBILE FIRST & RESPONSIVE BREAKPOINTS
+ * ====================================================================
+ */
+
+/* Medium Devices (Tablets, iPads, <= 768px) */
+@media screen and (max-width: 768px) {
+  .main-content-flow {
+    padding: 16px 12px 70px;
+  }
+
+  .section-main-heading {
+    font-size: 26px;
+  }
+
+  .grand-birthday-heading {
+    font-size: 32px;
+  }
+
+  .envelope-container {
+    width: 310px;
+    min-height: 220px;
+  }
+
+  .envelope-flap {
+    border-left-width: 155px;
+    border-right-width: 155px;
+    border-top-width: 120px;
+  }
+
+  .envelope-pocket-left {
+    border-left-width: 155px;
+  }
+
+  .envelope-pocket-right {
+    border-right-width: 155px;
+  }
+
+  .envelope-pocket-bottom {
+    border-bottom-width: 120px;
+    border-left-width: 155px;
+    border-right-width: 155px;
+  }
+
+  .letter-paper {
+    padding: 24px 18px;
+  }
+
+  .letter-body {
+    font-size: 20px;
+  }
+
+  .letter-salutation {
+    font-size: 28px;
+  }
+
+  .reasons-grid {
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 16px;
+  }
+
+  .reasons-final-message-box {
+    padding: 26px 20px 22px;
+    margin-top: 26px;
+    border-radius: 24px;
+  }
+
+  .final-message-text {
+    font-size: 22px;
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+  }
+
+  .lightbox-nav-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 24px;
+  }
+
+  .lightbox-nav-btn.prev-btn {
+    left: 8px;
+  }
+
+  .lightbox-nav-btn.next-btn {
+    right: 8px;
+  }
+}
+
+/* Small Devices (iPhones, Android Phones, <= 480px) */
+@media screen and (max-width: 480px) {
+  .nav-track {
+    padding: 6px 12px;
+  }
+
+  .nav-dot {
+    padding: 2px 6px;
+  }
+
+  .nav-dot .dot-icon {
+    font-size: 16px;
+  }
+
+  .nav-dot .dot-label {
+    font-size: 9.5px;
+  }
+
+  .nav-line {
+    width: 10px;
+  }
+
+  /* Age Lock Card on Mobile */
+  .age-card {
+    padding: 26px 18px;
+    border-radius: 28px;
+  }
+
+  .avatar-frame-wrapper {
+    width: 110px;
+    height: 110px;
+    margin-bottom: 12px;
+  }
+
+  .age-title {
+    font-size: 24px;
+  }
+
+  .age-subtitle {
+    font-size: 12.5px;
+    margin-bottom: 18px;
+  }
+
+  .digit-box {
+    width: 56px;
+    height: 64px;
+    font-size: 30px;
+    border-radius: 16px;
+  }
+
+  .keypad-grid {
+    gap: 12px;
+    max-width: 240px;
+  }
+
+  .keypad-btn {
+    width: 58px;
+    height: 58px;
+    font-size: 20px;
+  }
+
+  .unlock-btn {
+    padding: 14px;
+    font-size: 16px;
+  }
+
+  /* Envelope on Mobile */
+  .envelope-container {
+    width: 280px;
+    min-height: 200px;
+  }
+
+  .envelope-flap {
+    border-left-width: 140px;
+    border-right-width: 140px;
+    border-top-width: 110px;
+  }
+
+  .envelope-seal {
+    top: 80px;
+    width: 50px;
+    height: 50px;
+  }
+
+  .seal-heart {
+    font-size: 17px;
+  }
+
+  .envelope-pocket-left {
+    border-left-width: 140px;
+    border-top-width: 100px;
+    border-bottom-width: 100px;
+  }
+
+  .envelope-pocket-right {
+    border-right-width: 140px;
+    border-top-width: 100px;
+    border-bottom-width: 100px;
+  }
+
+  .envelope-pocket-bottom {
+    border-bottom-width: 110px;
+    border-left-width: 140px;
+    border-right-width: 140px;
+  }
+
+  .envelope-container.envelope-open .letter-paper.unfolded {
+    transform: translateY(-40px) scale(1);
+    min-height: auto;
+    padding: 22px 16px;
+  }
+
+  .letter-stamp {
+    top: 12px;
+    right: 12px;
+    font-size: 10.5px;
+    padding: 3px 8px;
+  }
+
+  .letter-body {
+    font-size: 19px;
+  }
+
+  .letter-salutation {
+    font-size: 26px;
+  }
+
+  .letter-signature {
+    font-size: 26px;
+  }
+
+  /* Cake on Mobile */
+  .cake-stage-wrapper {
+    min-height: 220px;
+  }
+
+  .tier-top {
+    width: 110px;
+    height: 44px;
+  }
+
+  .tier-middle {
+    width: 160px;
+    height: 52px;
+  }
+
+  .tier-bottom {
+    width: 210px;
+    height: 60px;
+  }
+
+  .cake-plate {
+    width: 240px;
+    height: 14px;
+  }
+
+  .cake-candles-row {
+    gap: 20px;
+  }
+
+  .candle-stick {
+    width: 8px;
+    height: 32px;
+  }
+
+  .candle-flame {
+    width: 12px;
+    height: 20px;
+  }
+
+  .grand-birthday-heading {
+    font-size: 28px;
+  }
+
+  .wish-card {
+    padding: 28px 20px;
+    border-radius: 24px;
+  }
+
+  .wish-card-title {
+    font-size: 22px;
+  }
+
+  .wish-card-text {
+    font-size: 14.5px;
+  }
+
+  .floating-controls {
+    bottom: 16px;
+    right: 16px;
+  }
+
+  .floating-music-btn {
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+  }
+
+  /* Reasons on Mobile */
+  .reason-card {
+    height: 265px;
+  }
+
+  .reasons-final-message-box {
+    padding: 22px 16px 20px;
+    margin-top: 22px;
+    border-radius: 22px;
+  }
+
+  .final-message-text {
+    font-size: 20px;
+    line-height: 1.5;
+  }
+
+  .final-message-badge {
+    font-size: 10.5px;
+    padding: 4px 14px;
+  }
+
+  .final-msg-bubble {
+    font-size: 15px;
+  }
+
+  .pill-btn {
+    padding: 13px 22px;
+    font-size: 14.5px;
+  }
+
+  /* Lightbox on Mobile */
+  .lightbox-dialog {
+    max-width: 96vw;
+    max-height: 96vh;
+  }
+
+  .lightbox-content-box {
+    padding: 14px 10px 16px;
+    border-radius: 20px;
+    max-width: 96vw;
+  }
+
+  .lightbox-image-wrapper {
+    max-height: 68vh;
+    border-radius: 12px;
+  }
+
+  .lightbox-img {
+    max-height: 66vh;
+  }
+
+  .lightbox-caption {
+    font-size: 21px;
+  }
+
+  .lightbox-nav-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 22px;
+  }
+}
+
+/* Very Small Screens (<= 340px) */
+@media screen and (max-width: 340px) {
+  .keypad-grid {
+    gap: 8px;
+    max-width: 210px;
+  }
+
+  .keypad-btn {
+    width: 50px;
+    height: 50px;
+    font-size: 18px;
+  }
+
+  .digit-box {
+    width: 48px;
+    height: 56px;
+    font-size: 26px;
+  }
+}

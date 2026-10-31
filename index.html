@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="description" content="A special, dreamy birthday surprise website for Sanuu filled with love, letters, memories, and celebration.">
+  <meta name="theme-color" content="#ffe3ec">
+  <title>Enter Your Age 🔐 - Happy Birthday Sanuu! 💖✨</title>
+
+  <!-- Google Fonts for Dreamy Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Dancing+Script:wght@600;700&family=Nunito:wght@400;600;700;800;900&family=Quicksand:wght@500;600;700&family=Sacramento&display=swap" rel="stylesheet">
+
+  <!-- Shared Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Background Particle & Confetti Canvas -->
+  <canvas id="particleCanvas" class="particle-canvas-layer"></canvas>
+
+  <!-- Floating Audio Mute / Unmute Control -->
+  <aside class="floating-controls">
+    <button id="musicToggleBtn" class="floating-music-btn" aria-label="Toggle background music" title="Toggle background music">
+      <span class="music-icon-disc">🔇</span>
+    </button>
+  </aside>
+
+  <!-- Navigation / Progress Tracker (Locked until age unlocked) -->
+  <nav class="nav-progress-wrapper" aria-label="Surprise progress">
+    <div class="nav-track locked" id="navTrack">
+      <a href="index.html" class="nav-dot active" data-step="1" title="Age Lock" aria-label="Go to Age Lock">
+        <span class="dot-icon">🔐</span>
+        <span class="dot-label">Lock</span>
+      </a>
+      <div class="nav-line"></div>
+      <a href="letter.html" class="nav-dot" data-step="2" title="Birthday Letter" aria-label="Go to Birthday Letter">
+        <span class="dot-icon">💌</span>
+        <span class="dot-label">Letter</span>
+      </a>
+      <div class="nav-line"></div>
+      <a href="reasons.html" class="nav-dot" data-step="3" title="Why You're Special" aria-label="Go to Why You're Special">
+        <span class="dot-icon">❤️</span>
+        <span class="dot-label">Reasons</span>
+      </a>
+      <div class="nav-line"></div>
+      <a href="gallery.html" class="nav-dot" data-step="4" title="Our Memories" aria-label="Go to Our Memories">
+        <span class="dot-icon">📸</span>
+        <span class="dot-label">Memories</span>
+      </a>
+      <div class="nav-line"></div>
+      <a href="final.html" class="nav-dot" data-step="5" title="Birthday Surprise" aria-label="Go to Birthday Surprise">
+        <span class="dot-icon">🎂</span>
+        <span class="dot-label">Surprise</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Main Content Presentation -->
+  <main class="main-content-flow">
+
+    <!-- ========================================================
+         PAGE 1: AGE LOCK SCREEN 🔐
+         ======================================================== -->
+    <section id="section-age-lock" class="page-section active" aria-hidden="false">
+      <div class="section-container age-lock-container">
+        
+        <!-- White Rounded Card with Pink Border & Soft Shadow -->
+        <div class="age-card">
+          
+          <!-- Cute Character Holding Roses inside Dashed Pink Frame -->
+          <div class="avatar-frame-wrapper">
+            <div class="avatar-dashed-frame">
+              <img src="assets/images/character-roses.svg" alt="Cute character holding roses" class="character-avatar" />
+            </div>
+            <div class="avatar-sparkle sparkle-tl">✨</div>
+            <div class="avatar-sparkle sparkle-tr">💖</div>
+          </div>
+
+          <!-- Age Heading & Subtitle -->
+          <div class="age-header-text">
+            <h1 id="agePromptTitle" class="age-title">Enter Your Age</h1>
+            <p id="agePromptSubtitle" class="age-subtitle">Only the birthday girl has the secret key to unlock this surprise 🌸</p>
+          </div>
+
+          <!-- EXACTLY TWO Input Boxes -->
+          <div class="age-inputs-row" id="ageInputsRow">
+            <div class="digit-box active" id="digitBox1" aria-label="First digit of age"></div>
+            <div class="digit-box" id="digitBox2" aria-label="Second digit of age"></div>
+          </div>
+
+          <!-- Feedback message (Error or Success) -->
+          <div id="ageFeedback" class="age-feedback" aria-live="polite"></div>
+
+          <!-- Cute Circular Numeric Keypad -->
+          <div class="keypad-grid" role="group" aria-label="Numeric keypad">
+            <button type="button" class="keypad-btn" data-val="1">1</button>
+            <button type="button" class="keypad-btn" data-val="2">2</button>
+            <button type="button" class="keypad-btn" data-val="3">3</button>
+
+            <button type="button" class="keypad-btn" data-val="4">4</button>
+            <button type="button" class="keypad-btn" data-val="5">5</button>
+            <button type="button" class="keypad-btn" data-val="6">6</button>
+
+            <button type="button" class="keypad-btn" data-val="7">7</button>
+            <button type="button" class="keypad-btn" data-val="8">8</button>
+            <button type="button" class="keypad-btn" data-val="9">9</button>
+
+            <button type="button" class="keypad-btn special-key" data-val="clear" title="Clear digits" aria-label="Clear digits">*</button>
+            <button type="button" class="keypad-btn" data-val="0">0</button>
+            <button type="button" class="keypad-btn special-key" data-val="backspace" title="Backspace" aria-label="Backspace">⌫</button>
+          </div>
+
+          <!-- Beautiful Pink UNLOCK Button -->
+          <button type="button" id="unlockBtn" class="unlock-btn">
+            <span>UNLOCK 💖</span>
+          </button>
+
+          <p class="lock-hint-text">Hint: Your two-digit age unlocks your birthday surprises! ✨</p>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Shared Scripts -->
+  <script src="js/config.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/particles.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
