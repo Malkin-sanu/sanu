@@ -41,6 +41,19 @@ The gallery automatically detects your photos using **either** of these two nami
 | **Card #14** | `photo14.jpg` / `.jpeg` / `.png` / `.webp` (or `14.*`) | Stargazing & sharing our dreams 🌌✨ |
 | **Card #15** | `photo15.jpg` / `.jpeg` / `.png` / `.webp` (or `15.*`) | Photobooth strips & goofy poses 🎀📸 |
 | **Card #16** | `photo16.jpg` / `.jpeg` / `.png` / `.webp` (or `16.*`) | Forever my best friend, happy birthday! 💖🎉 |
+| **Card #17** | `photo17.jpg` / `.jpeg` / `.png` / `.webp` (or `17.*`) | Golden Hour Glow ✨ |
+| **Card #18** | `photo18.jpg` / `.jpeg` / `.png` / `.webp` (or `18.*`) | Endless Smiles 😊 |
+| **Card #19** | `photo19.jpg` / `.jpeg` / `.png` / `.webp` (or `19.*`) | Sweet Memories 🌸 |
+| **Card #20** | `photo20.jpg` / `.jpeg` / `.png` / `.webp` (or `20.*`) | Heart & Soul 💖 |
+| **Card #21** | `photo21.jpg` / `.jpeg` / `.png` / `.webp` (or `21.*`) | Cherished Times ⏳ |
+| **Card #22** | `photo22.jpg` / `.jpeg` / `.png` / `.webp` (or `22.*`) | Little Moments 💫 |
+| **Card #23** | `photo23.jpg` / `.jpeg` / `.png` / `.webp` (or `23.*`) | Pure Happiness ☀️ |
+| **Card #24** | `photo24.jpg` / `.jpeg` / `.png` / `.webp` (or `24.*`) | Forever Bestie 👯‍♀️ |
+| **Card #25** | `photo25.jpg` / `.jpeg` / `.png` / `.webp` (or `25.*`) | Warm Hugs 🧸 |
+| **Card #26** | `photo26.jpg` / `.jpeg` / `.png` / `.webp` (or `26.*`) | Joyful Days 🌈 |
+| **Card #27** | `photo27.jpg` / `.jpeg` / `.png` / `.webp` (or `27.*`) | Precious Smiles 🌷 |
+| **Card #28** | `photo28.jpg` / `.jpeg` / `.png` / `.webp` (or `28.*`) | Special Sparkle ✨ |
+| **Card #29** | `photo29.jpg` / `.jpeg` / `.png` / `.webp` (or `29.*`) | Always Together 💕 |
 
 ---
 
