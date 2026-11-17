@@ -92,101 +92,292 @@ const BIRTHDAY_CONFIG = {
     {
       id: 1,
       image: "photo1.webp",
+      caption: "Coffee & endless gossip",
       date: "Spring Memories",
-      rotate: "-2.5deg"
+      rotate: "-2.5deg",
+      heartIcon: "🌸",
+      heartBorderStyle: "border-dashed",
+      heartAnim: "heart-anim-pulse"
     },
     {
       id: 2,
       image: "photo2.webp",
+      caption: "Your radiant smile",
       date: "Sunset Walk",
-      rotate: "3deg"
+      rotate: "3deg",
+      heartIcon: "🌅",
+      heartBorderStyle: "border-dotted",
+      heartAnim: "heart-anim-float"
     },
     {
       id: 3,
       image: "photo3.webp",
+      caption: "Silly selfies & laughs",
       date: "Crazy Moments",
-      rotate: "-1.8deg"
+      rotate: "-1.8deg",
+      heartIcon: "📸",
+      heartBorderStyle: "border-solid",
+      heartAnim: "heart-anim-wiggle"
     },
     {
       id: 4,
       image: "photo4.webp",
+      caption: "The birthday queen",
       date: "Special Day",
-      rotate: "2.2deg"
+      rotate: "2.2deg",
+      heartIcon: "👑",
+      heartBorderStyle: "border-double",
+      heartAnim: "heart-anim-shimmer"
     },
     {
       id: 5,
       image: "photo5.webp",
+      caption: "Partners in crime",
       date: "Unbreakable Bond",
-      rotate: "-3deg"
+      rotate: "-3deg",
+      heartIcon: "👯‍♀️",
+      heartBorderStyle: "border-dashed",
+      heartAnim: "heart-anim-pulse"
     },
     {
       id: 6,
       image: "photo6.webp",
+      caption: "A lifetime of memories",
       date: "Forever & Ever",
-      rotate: "1.5deg"
+      rotate: "1.5deg",
+      heartIcon: "🥂",
+      heartBorderStyle: "border-dotted",
+      heartAnim: "heart-anim-breathe"
     },
     {
       id: 7,
       image: "photo7.jpeg",
+      caption: "Sweet midnight treats",
       date: "Midnight Cravings",
-      rotate: "-2deg"
+      rotate: "-2deg",
+      heartIcon: "🍨",
+      heartBorderStyle: "border-solid",
+      heartAnim: "heart-anim-float"
     },
     {
       id: 8,
       image: "photo8.webp",
       caption: "FAVOURITE PERSON 🫶",
       date: "Adventure Time",
-      rotate: "2.8deg"
+      rotate: "2.8deg",
+      heartIcon: "💘",
+      heartBorderStyle: "border-double",
+      heartAnim: "heart-anim-pulse"
     },
     {
       id: 9,
       image: "photo9.jpeg",
+      caption: "Flower crown vibes",
       date: "Sunny Afternoons",
-      rotate: "-1.2deg"
+      rotate: "-1.2deg",
+      heartIcon: "🌼",
+      heartBorderStyle: "border-dashed",
+      heartAnim: "heart-anim-shimmer"
     },
     {
       id: 10,
       image: "photo10.jpeg",
+      caption: "Warm tea & cozy talks",
       date: "Cozy Vibes",
-      rotate: "3.2deg"
+      rotate: "3.2deg",
+      heartIcon: "☕",
+      heartBorderStyle: "border-dotted",
+      heartAnim: "heart-anim-breathe"
     },
     {
       id: 11,
       image: "photo11.jpeg",
+      caption: "Movies & popcorn nights",
       date: "Sleepover Nights",
-      rotate: "-2.7deg"
+      rotate: "-2.7deg",
+      heartIcon: "🌙",
+      heartBorderStyle: "border-solid",
+      heartAnim: "heart-anim-float"
     },
     {
       id: 12,
       image: "photo12.jpeg",
+      caption: "Waves & sunny smiles",
       date: "Summer Holiday",
-      rotate: "1.8deg"
+      rotate: "1.8deg",
+      heartIcon: "🌊",
+      heartBorderStyle: "border-double",
+      heartAnim: "heart-anim-pulse"
     },
     {
       id: 13,
       image: "photo13.jpeg",
+      caption: "Sweet treats & giggles",
       date: "Baking Chaos",
-      rotate: "-3.2deg"
+      rotate: "-3.2deg",
+      heartIcon: "🧁",
+      heartBorderStyle: "border-dashed",
+      heartAnim: "heart-anim-wiggle"
     },
     {
       id: 14,
       image: "photo14.jpeg",
+      caption: "Stargazing & dreams",
       date: "Late Night Talks",
-      rotate: "2deg"
+      rotate: "2deg",
+      heartIcon: "🌌",
+      heartBorderStyle: "border-dotted",
+      heartAnim: "heart-anim-shimmer"
     },
     {
       id: 15,
       image: "photo15.webp",
       caption: "kuchu puchu🎀📸",
       date: "Pure Shenanigans",
-      rotate: "-1.5deg"
+      rotate: "-1.5deg",
+      heartIcon: "🦋",
+      heartBorderStyle: "border-dashed",
+      heartAnim: "heart-anim-wiggle"
     },
     {
       id: 16,
       image: "photo16.webp",
       caption: "Forever my best friend, happy birthday! 💖🎉",
       date: "Unconditional Love",
-      rotate: "2.5deg"
+      rotate: "2.5deg",
+      heartIcon: "🎂",
+      heartBorderStyle: "border-solid",
+      heartAnim: "heart-anim-shimmer"
+    },
+    {
+      id: 17,
+      image: "photo17.jpg",
+      caption: "Golden hour beauty",
+      date: "Golden Hour Glow",
+      rotate: "-2.2deg",
+      heartIcon: "✨",
+      heartBorderStyle: "border-solid",
+      heartAnim: "heart-anim-shimmer"
+    },
+    {
+      id: 18,
+      image: "photo18.jpg",
+      caption: "My favourite laugh",
+      date: "Endless Smiles",
+      rotate: "2.6deg",
+      heartIcon: "😊",
+      heartBorderStyle: "border-dashed",
+      heartAnim: "heart-anim-pulse"
+    },
+    {
+      id: 19,
+      image: "photo19.jpg",
+      caption: "Sweetest soul ever",
+      date: "Sweet Memories",
+      rotate: "-1.7deg",
+      heartIcon: "🎀",
+      heartBorderStyle: "border-dotted",
+      heartAnim: "heart-anim-float"
+    },
+    {
+      id: 20,
+      image: "photo20.jpg",
+      caption: "Always in my heart",
+      date: "Heart & Soul",
+      rotate: "3.1deg",
+      heartIcon: "❤️",
+      heartBorderStyle: "border-double",
+      heartAnim: "heart-anim-pulse"
+    },
+    {
+      id: 21,
+      image: "photo21.jpg",
+      caption: "Treasured every second",
+      date: "Cherished Times",
+      rotate: "-2.8deg",
+      heartIcon: "⏳",
+      heartBorderStyle: "border-dashed",
+      heartAnim: "heart-anim-breathe"
+    },
+    {
+      id: 22,
+      image: "photo22.jpg",
+      caption: "Magic in little things",
+      date: "Little Moments",
+      rotate: "1.9deg",
+      heartIcon: "💫",
+      heartBorderStyle: "border-solid",
+      heartAnim: "heart-anim-shimmer"
+    },
+    {
+      id: 23,
+      image: "photo23.jpg",
+      caption: "Pure sunshine energy",
+      date: "Pure Happiness",
+      rotate: "-3.1deg",
+      heartIcon: "☀️",
+      heartBorderStyle: "border-dotted",
+      heartAnim: "heart-anim-float"
+    },
+    {
+      id: 24,
+      image: "photo24.jpg",
+      caption: "Bestie for a lifetime",
+      date: "Forever Bestie",
+      rotate: "2.4deg",
+      heartIcon: "💞",
+      heartBorderStyle: "border-double",
+      heartAnim: "heart-anim-wiggle"
+    },
+    {
+      id: 25,
+      image: "photo25.jpg",
+      caption: "Safest, warmest hugs",
+      date: "Warm Hugs",
+      rotate: "-1.6deg",
+      heartIcon: "🧸",
+      heartBorderStyle: "border-dashed",
+      heartAnim: "heart-anim-breathe"
+    },
+    {
+      id: 26,
+      image: "photo26.jpg",
+      caption: "Colors of pure joy",
+      date: "Joyful Days",
+      rotate: "2.9deg",
+      heartIcon: "🌈",
+      heartBorderStyle: "border-solid",
+      heartAnim: "heart-anim-shimmer"
+    },
+    {
+      id: 27,
+      image: "photo27.jpg",
+      caption: "Lights up my world",
+      date: "Precious Smiles",
+      rotate: "-2.4deg",
+      heartIcon: "🌷",
+      heartBorderStyle: "border-dotted",
+      heartAnim: "heart-anim-pulse"
+    },
+    {
+      id: 28,
+      image: "photo28.jpg",
+      caption: "One in a million",
+      date: "Special Sparkle",
+      rotate: "1.7deg",
+      heartIcon: "💎",
+      heartBorderStyle: "border-double",
+      heartAnim: "heart-anim-shimmer"
+    },
+    {
+      id: 29,
+      image: "photo29.jpg",
+      caption: "Forever side by side",
+      date: "Always Together",
+      rotate: "-2deg",
+      heartIcon: "💌",
+      heartBorderStyle: "border-dashed",
+      heartAnim: "heart-anim-float"
     }
   ],
 

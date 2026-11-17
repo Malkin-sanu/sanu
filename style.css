@@ -1226,6 +1226,321 @@ html, body {
   letter-spacing: 0.5px;
 }
 
+/* ========================================================
+   UNIQUE HEART-SHAPED CAPTION DESIGNS (All 29 Gallery Cards)
+   ======================================================== */
+.polaroid-caption.heart-caption-wrapper {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  --heart-c1: #ffe5ec;
+  --heart-c2: #ffb3c6;
+  --heart-border: #ff4d6d;
+  --heart-inner-stroke: rgba(255, 255, 255, 0.78);
+  --heart-text: #7a1030;
+  --heart-date: #c9184a;
+  --heart-glow: rgba(255, 77, 109, 0.28);
+}
+
+.heart-shaped-badge {
+  position: relative;
+  width: 100%;
+  max-width: 224px;
+  min-height: 122px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), filter 0.35s ease;
+}
+
+.polaroid-card:hover .heart-shaped-badge,
+.polaroid-card:focus-visible .heart-shaped-badge {
+  transform: scale(1.06) translateY(-2px);
+}
+
+.heart-svg-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+  filter: drop-shadow(0 5px 12px var(--heart-glow));
+  transition: filter 0.35s ease;
+}
+
+.polaroid-card:hover .heart-svg-bg,
+.polaroid-card:focus-visible .heart-svg-bg {
+  filter: drop-shadow(0 8px 18px var(--heart-glow));
+}
+
+.heart-path-outer {
+  stroke: var(--heart-border);
+  stroke-width: 2.5;
+  stroke-linejoin: round;
+}
+
+.heart-path-inner {
+  stroke: var(--heart-inner-stroke);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.heart-path-inner.border-dashed {
+  stroke-dasharray: 5 4;
+}
+
+.heart-path-inner.border-dotted {
+  stroke-dasharray: 1.5 4.5;
+  stroke-width: 2.2;
+}
+
+.heart-path-inner.border-solid {
+  stroke-dasharray: none;
+  opacity: 0.75;
+}
+
+.heart-path-inner.border-double {
+  stroke-dasharray: 10 3 2 3;
+  stroke-width: 1.8;
+}
+
+.heart-badge-content {
+  position: relative;
+  z-index: 2;
+  padding: 24px 28px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+}
+
+.heart-badge-icon {
+  font-size: 16px;
+  line-height: 1;
+  margin-bottom: 3px;
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.polaroid-card:hover .heart-badge-icon {
+  transform: scale(1.22);
+}
+
+.heart-caption-text {
+  font-family: var(--font-handwritten);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--heart-text);
+  line-height: 1.15;
+  max-width: 158px;
+  margin: 0;
+  word-wrap: break-word;
+}
+
+.heart-caption-date {
+  display: block;
+  font-size: 9.5px;
+  font-weight: 800;
+  color: var(--heart-date);
+  margin-top: 3px;
+  letter-spacing: 0.45px;
+  text-transform: uppercase;
+  max-width: 122px;
+  line-height: 1.2;
+}
+
+/* Unique Subtle Heart Animations */
+.heart-anim-pulse {
+  animation: heartBadgePulse 3.2s ease-in-out infinite;
+}
+
+.heart-anim-float {
+  animation: heartBadgeFloat 3.8s ease-in-out infinite;
+}
+
+.heart-anim-wiggle {
+  animation: heartBadgeWiggle 4.2s ease-in-out infinite;
+}
+
+.heart-anim-shimmer {
+  animation: heartBadgeShimmer 3.5s ease-in-out infinite;
+}
+
+.heart-anim-breathe {
+  animation: heartBadgeBreathe 4s ease-in-out infinite;
+}
+
+@keyframes heartBadgePulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.035); }
+}
+
+@keyframes heartBadgeFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+@keyframes heartBadgeWiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-1.5deg); }
+  75% { transform: rotate(1.5deg); }
+}
+
+@keyframes heartBadgeShimmer {
+  0%, 100% { filter: brightness(1); transform: scale(1); }
+  50% { filter: brightness(1.04); transform: scale(1.025); }
+}
+
+@keyframes heartBadgeBreathe {
+  0%, 100% { transform: scale(1) translateY(0); }
+  50% { transform: scale(1.03) translateY(-2px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heart-anim-pulse,
+  .heart-anim-float,
+  .heart-anim-wiggle,
+  .heart-anim-shimmer,
+  .heart-anim-breathe {
+    animation: none;
+  }
+}
+
+/* 29 Unique Heart Color Palettes (All 29 Gallery Cards) */
+.heart-theme-1 {
+  --heart-c1: #ffe5ec; --heart-c2: #ffb3c6; --heart-border: #ff4d6d;
+  --heart-text: #7a1030; --heart-date: #c9184a; --heart-glow: rgba(255, 77, 109, 0.30);
+}
+.heart-theme-2 {
+  --heart-c1: #fff1d0; --heart-c2: #ffd166; --heart-border: #f48c06;
+  --heart-text: #6c3400; --heart-date: #c95b00; --heart-glow: rgba(244, 140, 6, 0.28);
+}
+.heart-theme-3 {
+  --heart-c1: #ffd6ec; --heart-c2: #ff99cc; --heart-border: #e01e79;
+  --heart-text: #6b0537; --heart-date: #b51763; --heart-glow: rgba(224, 30, 121, 0.28);
+}
+.heart-theme-4 {
+  --heart-c1: #fff3d6; --heart-c2: #ffc2d4; --heart-border: #d97706;
+  --heart-text: #6b2135; --heart-date: #b45309; --heart-glow: rgba(217, 119, 6, 0.28);
+}
+.heart-theme-5 {
+  --heart-c1: #ffe0eb; --heart-c2: #ffa6c1; --heart-border: #ff4d6d;
+  --heart-text: #72092b; --heart-date: #d90429; --heart-glow: rgba(255, 77, 109, 0.30);
+}
+.heart-theme-6 {
+  --heart-c1: #fdf0d5; --heart-c2: #fbc4ab; --heart-border: #e07a5f;
+  --heart-text: #5c281c; --heart-date: #b84a32; --heart-glow: rgba(224, 122, 95, 0.28);
+}
+.heart-theme-7 {
+  --heart-c1: #f3e0ff; --heart-c2: #e0b1ff; --heart-border: #9d4edd;
+  --heart-text: #4a1475; --heart-date: #7b2cbf; --heart-glow: rgba(157, 78, 221, 0.28);
+}
+.heart-theme-8 {
+  --heart-c1: #d8f3dc; --heart-c2: #ffb3c6; --heart-border: #e73868;
+  --heart-text: #590d22; --heart-date: #a4133c; --heart-glow: rgba(231, 56, 104, 0.30);
+}
+.heart-theme-9 {
+  --heart-c1: #fff9db; --heart-c2: #ffe08a; --heart-border: #e09f3e;
+  --heart-text: #664300; --heart-date: #b87600; --heart-glow: rgba(224, 159, 62, 0.28);
+}
+.heart-theme-10 {
+  --heart-c1: #fae1dd; --heart-c2: #f8ad9d; --heart-border: #d06b58;
+  --heart-text: #5e2318; --heart-date: #a84432; --heart-glow: rgba(208, 107, 88, 0.28);
+}
+.heart-theme-11 {
+  --heart-c1: #ede4ff; --heart-c2: #d4bbfc; --heart-border: #8338ec;
+  --heart-text: #3c096c; --heart-date: #6a24c7; --heart-glow: rgba(131, 56, 236, 0.26);
+}
+.heart-theme-12 {
+  --heart-c1: #e0f4ff; --heart-c2: #bde0fe; --heart-border: #3a86ff;
+  --heart-text: #0b3954; --heart-date: #1d65d6; --heart-glow: rgba(58, 134, 255, 0.26);
+}
+.heart-theme-13 {
+  --heart-c1: #fff0f3; --heart-c2: #ffccd5; --heart-border: #ff5d8f;
+  --heart-text: #750d37; --heart-date: #d6285f; --heart-glow: rgba(255, 93, 143, 0.30);
+}
+.heart-theme-14 {
+  --heart-c1: #e5d9ff; --heart-c2: #c8b6ff; --heart-border: #5a189a;
+  --heart-text: #240046; --heart-date: #5a189a; --heart-glow: rgba(90, 24, 154, 0.26);
+}
+.heart-theme-15 {
+  --heart-c1: #e0f7fa; --heart-c2: #ffc8dd; --heart-border: #d81b60;
+  --heart-text: #5e0b3a; --heart-date: #ad1457; --heart-glow: rgba(216, 27, 96, 0.28);
+}
+.heart-theme-16 {
+  --heart-c1: #fff4cc; --heart-c2: #ff99b8; --heart-border: #e63946;
+  --heart-text: #66071d; --heart-date: #c1121f; --heart-glow: rgba(230, 57, 70, 0.32);
+}
+.heart-theme-16 .heart-shaped-badge {
+  max-width: 238px;
+  min-height: 138px;
+}
+.heart-theme-16 .heart-badge-content {
+  padding: 24px 24px 26px;
+}
+.heart-theme-16 .heart-caption-text {
+  font-size: 14.5px;
+  line-height: 1.15;
+  max-width: 174px;
+}
+.heart-theme-17 {
+  --heart-c1: #ffecd1; --heart-c2: #ffbe76; --heart-border: #eb7b16;
+  --heart-text: #632c00; --heart-date: #c45b00; --heart-glow: rgba(235, 123, 22, 0.28);
+}
+.heart-theme-18 {
+  --heart-c1: #ffe8d6; --heart-c2: #ffb5a7; --heart-border: #f25c54;
+  --heart-text: #6b1a16; --heart-date: #cc3730; --heart-glow: rgba(242, 92, 84, 0.28);
+}
+.heart-theme-19 {
+  --heart-c1: #fff0f6; --heart-c2: #ffdeeb; --heart-border: #f06595;
+  --heart-text: #70113a; --heart-date: #c2255c; --heart-glow: rgba(240, 101, 149, 0.30);
+}
+.heart-theme-20 {
+  --heart-c1: #ffe3e3; --heart-c2: #ffa8a8; --heart-border: #e03131;
+  --heart-text: #6b0f0f; --heart-date: #c92a2a; --heart-glow: rgba(224, 49, 49, 0.28);
+}
+.heart-theme-21 {
+  --heart-c1: #f8edeb; --heart-c2: #e7c6ff; --heart-border: #9b5de5;
+  --heart-text: #46177a; --heart-date: #7b3bc9; --heart-glow: rgba(155, 93, 229, 0.26);
+}
+.heart-theme-22 {
+  --heart-c1: #ffe5f7; --heart-c2: #ffcbf2; --heart-border: #f15bb5;
+  --heart-text: #690c46; --heart-date: #c92a8a; --heart-glow: rgba(241, 91, 181, 0.28);
+}
+.heart-theme-23 {
+  --heart-c1: #fff9cc; --heart-c2: #ffe66d; --heart-border: #e6a700;
+  --heart-text: #5c4000; --heart-date: #b37d00; --heart-glow: rgba(230, 167, 0, 0.28);
+}
+.heart-theme-24 {
+  --heart-c1: #ffe5dc; --heart-c2: #ffaf99; --heart-border: #ff6b6b;
+  --heart-text: #6b1616; --heart-date: #d63a3a; --heart-glow: rgba(255, 107, 107, 0.28);
+}
+.heart-theme-25 {
+  --heart-c1: #f5ebe0; --heart-c2: #e3d5ca; --heart-border: #b08968;
+  --heart-text: #4a3222; --heart-date: #7f5539; --heart-glow: rgba(176, 137, 104, 0.28);
+}
+.heart-theme-26 {
+  --heart-c1: #e8f1ff; --heart-c2: #ffd6e8; --heart-border: #ff70a6;
+  --heart-text: #471847; --heart-date: #c92a75; --heart-glow: rgba(255, 112, 166, 0.28);
+}
+.heart-theme-27 {
+  --heart-c1: #ffe8e8; --heart-c2: #f9bec7; --heart-border: #f2709c;
+  --heart-text: #6e1435; --heart-date: #c43b6b; --heart-glow: rgba(242, 112, 156, 0.28);
+}
+.heart-theme-28 {
+  --heart-c1: #e6f2ff; --heart-c2: #d6d2ff; --heart-border: #5e60ce;
+  --heart-text: #1c1e6e; --heart-date: #4345b0; --heart-glow: rgba(94, 96, 206, 0.26);
+}
+.heart-theme-29 {
+  --heart-c1: #ffe5ec; --heart-c2: #ff8fab; --heart-border: #fb6f92;
+  --heart-text: #6e0c2c; --heart-date: #c9184a; --heart-glow: rgba(251, 111, 146, 0.32);
+}
+
 /* Lightbox Dialog (<dialog>) */
 .lightbox-dialog {
   border: none;

@@ -435,8 +435,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const lightboxNextBtn = document.getElementById('lightboxNextBtn');
   const startSlideshowBtn = document.getElementById('startSlideshowBtn');
 
-  // Supported photo extensions
-  const SUPPORTED_EXTENSIONS = ['webp', 'jpeg', 'jpg', 'png'];
+  // Supported photo extensions (lowercase & uppercase for full server compatibility)
+  const SUPPORTED_EXTENSIONS = ['webp', 'jpeg', 'jpg', 'png', 'WEBP', 'JPEG', 'JPG', 'PNG'];
 
   /**
    * Generates candidate image URLs to try in order (.webp, .jpeg, .jpg, .png)
@@ -530,12 +530,13 @@ document.addEventListener('DOMContentLoaded', () => {
       const fallbackSrc = mem.fallback || `memory${index + 1}.svg`;
       const initialSrc = mem.activeSrc || mem.image;
       const isPriority = index < 6;
+
       return `
       <div class="polaroid-card" style="--rotation: ${mem.rotate || '0deg'}" data-index="${index}" tabindex="0" role="button" aria-label="View photo ${index + 1}">
         <div class="polaroid-tape"></div>
         <div class="polaroid-img-wrapper">
           <img src="${initialSrc}"
-               alt="${mem.caption}"
+               alt="${mem.caption || ''}"
                decoding="async"
                loading="${isPriority ? 'eager' : 'lazy'}"
                ${isPriority ? 'fetchpriority="high"' : ''}
@@ -545,9 +546,24 @@ document.addEventListener('DOMContentLoaded', () => {
                onerror="window.handleGalleryImageError(this, ${mem.id}, '${fallbackSrc}')" />
           <div class="polaroid-zoom-hint">🔍 Tap to enlarge</div>
         </div>
-        <div class="polaroid-caption">
-          <p class="caption-text">${mem.caption}</p>
-          <span class="caption-date">${mem.date}</span>
+        <div class="polaroid-caption heart-caption-wrapper heart-theme-${mem.id}">
+          <div class="heart-shaped-badge ${mem.heartAnim || 'heart-anim-pulse'}">
+            <svg class="heart-svg-bg" viewBox="0 0 220 140" preserveAspectRatio="none" aria-hidden="true">
+              <defs>
+                <linearGradient id="heartGrad-${mem.id}" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="var(--heart-c1)" />
+                  <stop offset="100%" stop-color="var(--heart-c2)" />
+                </linearGradient>
+              </defs>
+              <path class="heart-path-outer" d="M 110,130 C 40,98 6,65 18,34 C 32,6 80,6 110,34 C 140,6 188,6 202,34 C 214,65 180,98 110,130 Z" fill="url(#heartGrad-${mem.id})" />
+              <path class="heart-path-inner ${mem.heartBorderStyle || 'border-dashed'}" d="M 110,123 C 46,94 15,64 26,37 C 38,13 82,13 110,38 C 138,13 182,13 194,37 C 205,64 174,94 110,123 Z" fill="none" />
+            </svg>
+            <div class="heart-badge-content">
+              <span class="heart-badge-icon" aria-hidden="true">${mem.heartIcon || '💖'}</span>
+              <p class="heart-caption-text">${mem.caption || mem.date}</p>
+              <span class="heart-caption-date">${mem.date}</span>
+            </div>
+          </div>
         </div>
       </div>
     `;
@@ -620,9 +636,9 @@ document.addEventListener('DOMContentLoaded', () => {
       };
 
       lightboxImg.src = activeSrc;
-      lightboxImg.alt = mem.caption;
+      lightboxImg.alt = mem.caption || 'Memory full view';
     }
-    if (lightboxCaption) lightboxCaption.textContent = mem.caption;
+    if (lightboxCaption) lightboxCaption.textContent = mem.caption || '';
     if (lightboxDate) lightboxDate.textContent = mem.date;
     if (lightboxCounter) {
       lightboxCounter.textContent = `${index + 1} / ${config.memories.length}`;
