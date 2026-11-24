@@ -274,6 +274,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (envelope.classList.contains('envelope-open')) return;
 
     envelope.classList.add('envelope-open');
+    envelope.setAttribute('aria-expanded', 'true');
     if (window.particleEngine && typeof window.particleEngine.burstAt === 'function') {
       window.particleEngine.burstAt(window.innerWidth / 2, window.innerHeight * 0.45, 20);
     }
@@ -283,6 +284,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (letterPaper) {
         letterPaper.classList.add('unfolded');
       }
+      envelope.classList.add('envelope-unfolded');
     }, 600);
   }
 
@@ -305,6 +307,13 @@ document.addEventListener('DOMContentLoaded', () => {
     letterSealBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       openEnvelope();
+    });
+    letterSealBtn.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        e.stopPropagation();
+        openEnvelope();
+      }
     });
   }
 
@@ -434,6 +443,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const lightboxPrevBtn = document.getElementById('lightboxPrevBtn');
   const lightboxNextBtn = document.getElementById('lightboxNextBtn');
   const startSlideshowBtn = document.getElementById('startSlideshowBtn');
+  const lightboxPlayPauseBtn = document.getElementById('lightboxPlayPauseBtn');
+  const lightboxPlayIcon = document.getElementById('lightboxPlayIcon');
+  const lightboxPlayLabel = document.getElementById('lightboxPlayLabel');
+  const SLIDESHOW_INTERVAL_MS = 2000;
 
   // Supported photo extensions (lowercase & uppercase for full server compatibility)
   const SUPPORTED_EXTENSIONS = ['webp', 'jpeg', 'jpg', 'png', 'WEBP', 'JPEG', 'JPG', 'PNG'];
@@ -609,6 +622,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!mem) return;
 
     if (lightboxImg) {
+      lightboxImg.classList.add('switching');
       const fallbackSrc = mem.fallback || `memory${index + 1}.svg`;
       const activeSrc = mem.activeSrc || mem.image;
 
@@ -618,6 +632,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       lightboxImg.onload = function() {
         mem.activeSrc = lightboxImg.currentSrc || lightboxImg.src;
+        lightboxImg.classList.remove('switching');
       };
 
       lightboxImg.onerror = function() {
@@ -630,13 +645,20 @@ document.addEventListener('DOMContentLoaded', () => {
             if (fallbackSrc.indexOf('assets') === -1) {
               lightboxImg.src = `assets/images/${fallbackSrc}`;
             }
+            lightboxImg.classList.remove('switching');
           };
           lightboxImg.src = fallbackSrc;
+          lightboxImg.classList.remove('switching');
         }
       };
 
       lightboxImg.src = activeSrc;
       lightboxImg.alt = mem.caption || 'Memory full view';
+
+      // Fast fallback to remove switching class if image is already cached
+      setTimeout(() => {
+        if (lightboxImg) lightboxImg.classList.remove('switching');
+      }, 200);
     }
     if (lightboxCaption) lightboxCaption.textContent = mem.caption || '';
     if (lightboxDate) lightboxDate.textContent = mem.date;
@@ -655,11 +677,93 @@ document.addEventListener('DOMContentLoaded', () => {
     renderLightboxItem(currentLightboxIndex);
   }
 
-  if (lightboxCloseBtn) lightboxCloseBtn.addEventListener('click', closeLightbox);
-  if (lightboxNextBtn) lightboxNextBtn.addEventListener('click', nextLightbox);
-  if (lightboxPrevBtn) lightboxPrevBtn.addEventListener('click', prevLightbox);
+  // Resets the 2-second slideshow timer when user manually interacts
+  function resetSlideshowTimer() {
+    if (slideshowTimer) {
+      clearInterval(slideshowTimer);
+      slideshowTimer = null;
+    }
+    if (isSlideshowActive) {
+      slideshowTimer = setInterval(() => {
+        nextLightbox();
+      }, SLIDESHOW_INTERVAL_MS);
+    }
+  }
 
-  // Close lightbox when clicking the backdrop
+  function handleUserNext() {
+    nextLightbox();
+    if (isSlideshowActive) {
+      resetSlideshowTimer();
+    }
+  }
+
+  function handleUserPrev() {
+    prevLightbox();
+    if (isSlideshowActive) {
+      resetSlideshowTimer();
+    }
+  }
+
+  function updateSlideshowButtons(isPlaying) {
+    if (startSlideshowBtn) {
+      startSlideshowBtn.classList.toggle('playing', isPlaying);
+      startSlideshowBtn.innerHTML = isPlaying ? '<span>⏸ Pause Slideshow</span>' : '<span>▶ Slideshow Mode</span>';
+    }
+    if (lightboxPlayPauseBtn) {
+      lightboxPlayPauseBtn.classList.toggle('playing', isPlaying);
+      if (lightboxPlayIcon) lightboxPlayIcon.textContent = isPlaying ? '⏸' : '▶';
+      if (lightboxPlayLabel) lightboxPlayLabel.textContent = isPlaying ? 'Pause' : 'Play';
+    }
+  }
+
+  // Slideshow feature (2000ms auto-advance)
+  function startSlideshow(startIndex) {
+    // Unconditionally clear any existing interval to prevent duplicate timers
+    if (slideshowTimer) {
+      clearInterval(slideshowTimer);
+      slideshowTimer = null;
+    }
+    isSlideshowActive = true;
+
+    if (typeof startIndex === 'number') {
+      currentLightboxIndex = startIndex;
+    }
+
+    if (lightboxDialog && !lightboxDialog.open && !lightboxDialog.hasAttribute('open')) {
+      openLightbox(currentLightboxIndex);
+    }
+
+    updateSlideshowButtons(true);
+
+    slideshowTimer = setInterval(() => {
+      nextLightbox();
+    }, SLIDESHOW_INTERVAL_MS);
+  }
+
+  function stopSlideshow() {
+    isSlideshowActive = false;
+    if (slideshowTimer) {
+      clearInterval(slideshowTimer);
+      slideshowTimer = null;
+    }
+    updateSlideshowButtons(false);
+  }
+
+  function toggleSlideshow() {
+    if (isSlideshowActive) {
+      stopSlideshow();
+    } else {
+      startSlideshow(currentLightboxIndex);
+    }
+  }
+
+  if (lightboxCloseBtn) lightboxCloseBtn.addEventListener('click', closeLightbox);
+  if (lightboxNextBtn) lightboxNextBtn.addEventListener('click', handleUserNext);
+  if (lightboxPrevBtn) lightboxPrevBtn.addEventListener('click', handleUserPrev);
+  if (startSlideshowBtn) startSlideshowBtn.addEventListener('click', toggleSlideshow);
+  if (lightboxPlayPauseBtn) lightboxPlayPauseBtn.addEventListener('click', toggleSlideshow);
+
+  // Close lightbox when clicking the backdrop, keyboard navigation & play/pause
   if (lightboxDialog) {
     lightboxDialog.addEventListener('click', (e) => {
       const dialogDimensions = lightboxDialog.getBoundingClientRect();
@@ -674,44 +778,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     lightboxDialog.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowRight') nextLightbox();
-      if (e.key === 'ArrowLeft') prevLightbox();
-      if (e.key === 'Escape') closeLightbox();
-    });
-  }
-
-  // Slideshow feature
-  function startSlideshow() {
-    isSlideshowActive = true;
-    openLightbox(0);
-    if (startSlideshowBtn) {
-      startSlideshowBtn.classList.add('playing');
-      startSlideshowBtn.innerHTML = '<span>⏸ Pause Slideshow</span>';
-    }
-
-    slideshowTimer = setInterval(() => {
-      nextLightbox();
-    }, 3500);
-  }
-
-  function stopSlideshow() {
-    isSlideshowActive = false;
-    if (slideshowTimer) {
-      clearInterval(slideshowTimer);
-      slideshowTimer = null;
-    }
-    if (startSlideshowBtn) {
-      startSlideshowBtn.classList.remove('playing');
-      startSlideshowBtn.innerHTML = '<span>▶ Slideshow Mode</span>';
-    }
-  }
-
-  if (startSlideshowBtn) {
-    startSlideshowBtn.addEventListener('click', () => {
-      if (isSlideshowActive) {
-        stopSlideshow();
-      } else {
-        startSlideshow();
+      if (e.key === 'ArrowRight') {
+        handleUserNext();
+      } else if (e.key === 'ArrowLeft') {
+        handleUserPrev();
+      } else if (e.key === ' ' || e.code === 'Space') {
+        e.preventDefault();
+        toggleSlideshow();
+      } else if (e.key === 'Escape') {
+        closeLightbox();
       }
     });
   }

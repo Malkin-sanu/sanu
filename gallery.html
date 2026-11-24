@@ -69,8 +69,8 @@
       <div class="section-container memories-section-container">
         
         <header class="section-title-wrap">
-          <span class="cute-tag">OUR TIME CAPSULE 🌸</span>
-          <h2 class="section-main-heading">Our Beautiful Memories</h2>
+          <span class="cute-tag">YOUR TIME CAPSULE 🌸</span>
+          <h2 class="section-main-heading">Your Beautiful Memories</h2>
           <p class="section-sub-heading">Frozen moments of friendship, laughter, and endless smiles 💕</p>
           
           <div class="gallery-controls">
@@ -109,7 +109,13 @@
       <div class="lightbox-details">
         <p id="lightboxCaption" class="lightbox-caption"></p>
         <span id="lightboxDate" class="lightbox-date"></span>
-        <span id="lightboxCounter" class="lightbox-counter"></span>
+        <div class="lightbox-controls-row">
+          <span id="lightboxCounter" class="lightbox-counter"></span>
+          <button type="button" id="lightboxPlayPauseBtn" class="lightbox-play-btn" aria-label="Toggle slideshow" title="Play or pause slideshow">
+            <span id="lightboxPlayIcon" aria-hidden="true">▶</span>
+            <span id="lightboxPlayLabel">Play</span>
+          </button>
+        </div>
       </div>
 
       <!-- Navigation Arrows -->
