@@ -32,7 +32,7 @@ const BIRTHDAY_CONFIG = {
       "Aaj tumhare birthday par meri bas yahi wish hai ki tumhari life endless happiness, success, love aur beautiful memories se bhari rahe. Tumhare saare dreams poore hon aur tumhe life mein woh sab kuch mile jo tum truly deserve karti ho. Main nahi jaanta future mein kya hoga, but itna zaroor jaanta hoon ki tum mere liye hamesha bahut special rahogi. Bas hamesha aise hi smile karti rehna, kyunki tumhari smile genuinely bahut precious hai.",
       "Thank you for being YOU. Shayad main har baar express nahi kar pata, but I genuinely feel lucky ki tum meri life ka part ho. Kabhi-kabhi lagta hai ki chahe main kitne bhi words likh loon, woh kabhi enough nahi honge tumhe batane ke liye ki tum mere liye kitni special ho. Happiest Birthday once again! Hamesha khush rehna, aise hi shine karti rehna aur kabhi mat bhoolna ki koi hai jo tumhe words se bhi zyada special maanta hai. ❤️🫶🏻🎂"
     ],
-    closing: "Forever & Always Your Best Friend,",
+    closing: "Forever & Always Your JISU,",
     signature: "With all my love ❤️"
   },
 
