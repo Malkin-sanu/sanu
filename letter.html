@@ -87,36 +87,39 @@
               <span class="seal-text">Open</span>
             </div>
 
+            <!-- Letter Clipping Container (Keeps letter completely hidden inside envelope when closed) -->
+            <div class="letter-clipping-container">
+              <!-- Handwritten-Style Birthday Letter (Slides out smoothly) -->
+              <article class="letter-paper" id="letterPaper">
+                <div class="letter-stamp">🎂 Special Delivery</div>
+                <div class="letter-inner-content">
+                  <h3 class="letter-salutation" id="letterSalutation">My Dearest Sanuu,</h3>
+                  
+                  <div class="letter-body" id="letterBodyContainer">
+                    <!-- Populated dynamically from config.letter.paragraphs -->
+                  </div>
+
+                  <div class="letter-signature-block">
+                    <p class="letter-closing" id="letterClosing">Forever & Always Your Best Friend,</p>
+                    <p class="letter-signature" id="letterSignature">With all my love ❤️</p>
+                  </div>
+
+                  <!-- Continue Button -->
+                  <div class="letter-btn-row">
+                    <a href="reasons.html" class="pill-btn next-step-btn" data-next-section="3">
+                      <span>Continue to Why You're Special 🌸 ➔</span>
+                    </a>
+                  </div>
+                </div>
+              </article>
+            </div>
+
             <!-- Envelope Pocket / Front Body -->
             <div class="envelope-pocket">
               <div class="envelope-pocket-left"></div>
               <div class="envelope-pocket-right"></div>
               <div class="envelope-pocket-bottom"></div>
             </div>
-
-            <!-- Handwritten-Style Birthday Letter (Slides out smoothly) -->
-            <article class="letter-paper" id="letterPaper">
-              <div class="letter-stamp">🎂 Special Delivery</div>
-              <div class="letter-inner-content">
-                <h3 class="letter-salutation" id="letterSalutation">My Dearest Sanuu,</h3>
-                
-                <div class="letter-body" id="letterBodyContainer">
-                  <!-- Populated dynamically from config.letter.paragraphs -->
-                </div>
-
-                <div class="letter-signature-block">
-                  <p class="letter-closing" id="letterClosing">Forever & Always Your Best Friend,</p>
-                  <p class="letter-signature" id="letterSignature">With all my love ❤️</p>
-                </div>
-
-                <!-- Continue Button -->
-                <div class="letter-btn-row">
-                  <a href="reasons.html" class="pill-btn next-step-btn" data-next-section="3">
-                    <span>Continue to Why You're Special 🌸 ➔</span>
-                  </a>
-                </div>
-              </div>
-            </article>
 
           </div>
         </div>

@@ -43,6 +43,11 @@
     border-right-width: 155px;
   }
 
+  .letter-clipping-container {
+    width: 310px;
+    height: 220px;
+  }
+
   .letter-paper {
     padding: 24px 18px;
   }
@@ -194,6 +199,11 @@
     border-bottom-width: 110px;
     border-left-width: 140px;
     border-right-width: 140px;
+  }
+
+  .letter-clipping-container {
+    width: 280px;
+    height: 200px;
   }
 
   .envelope-container.envelope-open .letter-paper.unfolded {

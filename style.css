@@ -551,44 +551,78 @@ html, body {
   perspective: 1200px;
   display: flex;
   justify-content: center;
-  padding: 20px 0 40px;
+  padding: 40px 0 50px;
 }
 
 .envelope-container {
   position: relative;
   width: 340px;
-  min-height: 240px;
+  height: 240px;
+  margin: 0 auto;
+  cursor: pointer;
+  transition: transform 0.4s ease;
+}
+
+/* Envelope Back Base */
+.envelope-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 340px;
+  height: 240px;
   background: #ffb3c6;
   border-radius: 20px;
   box-shadow: 0 25px 50px rgba(255, 105, 135, 0.28);
-  cursor: pointer;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  z-index: 1;
+  pointer-events: none;
+  transition: transform 0.4s ease, box-shadow 0.4s ease, opacity 0.5s ease;
 }
 
-.envelope-container:hover {
-  transform: translateY(-4px);
+.envelope-container:not(.envelope-open):hover::before {
+  transform: translateX(-50%) translateY(-4px);
   box-shadow: 0 30px 60px rgba(255, 105, 135, 0.38);
+}
+
+.envelope-container.envelope-open {
+  width: 100%;
+  max-width: 580px;
+  height: auto;
+  min-height: 240px;
+  cursor: default;
+}
+
+.envelope-container.envelope-open.envelope-unfolded::before {
+  opacity: 0.35;
 }
 
 /* Envelope Flap */
 .envelope-flap {
   position: absolute;
   top: 0;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
   width: 0;
   height: 0;
   border-left: 170px solid transparent;
   border-right: 170px solid transparent;
   border-top: 130px solid #ff85a1;
   transform-origin: top;
-  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), z-index 0s 0.25s, opacity 0.5s ease;
   z-index: 5;
-  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.08));
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.08));
+  pointer-events: none;
 }
 
 .envelope-container.envelope-open .envelope-flap {
-  transform: rotateX(180deg);
+  transform: translateX(-50%) rotateX(180deg);
   z-index: 1;
+  filter: drop-shadow(0 -4px 6px rgba(0, 0, 0, 0.06));
+}
+
+.envelope-container.envelope-open.envelope-unfolded .envelope-flap {
+  opacity: 0.35;
 }
 
 /* Wax Seal Button */
@@ -610,11 +644,17 @@ html, body {
   color: #ffffff;
   z-index: 6;
   cursor: pointer;
-  transition: var(--transition-bounce);
+  transition: var(--transition-bounce), opacity 0.3s ease;
+  user-select: none;
 }
 
 .envelope-seal:hover {
   transform: translateX(-50%) scale(1.12);
+  box-shadow: 0 8px 20px rgba(201, 24, 74, 0.55);
+}
+
+.envelope-seal:active {
+  transform: translateX(-50%) scale(0.95);
 }
 
 .seal-heart {
@@ -632,20 +672,22 @@ html, body {
 .envelope-container.envelope-open .envelope-seal {
   opacity: 0;
   pointer-events: none;
-  transform: translateX(-50%) scale(0.5);
+  transform: translateX(-50%) scale(0.3);
 }
 
 /* Envelope Pocket Details */
 .envelope-pocket {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 340px;
+  height: 240px;
   border-radius: 20px;
   overflow: hidden;
-  z-index: 3;
+  z-index: 4;
   pointer-events: none;
+  transition: opacity 0.5s ease;
 }
 
 .envelope-pocket-left {
@@ -657,6 +699,7 @@ html, body {
   border-left: 170px solid #ff9ebb;
   border-top: 120px solid transparent;
   border-bottom: 120px solid #ff9ebb;
+  z-index: 1;
 }
 
 .envelope-pocket-right {
@@ -668,6 +711,7 @@ html, body {
   border-right: 170px solid #ff85a1;
   border-top: 120px solid transparent;
   border-bottom: 120px solid #ff85a1;
+  z-index: 1;
 }
 
 .envelope-pocket-bottom {
@@ -679,45 +723,115 @@ html, body {
   border-bottom: 130px solid #ff758f;
   border-left: 170px solid transparent;
   border-right: 170px solid transparent;
+  z-index: 2;
+}
+
+.envelope-container.envelope-open.envelope-unfolded .envelope-pocket {
+  opacity: 0.35;
+}
+
+/* Properly Sized Clipping Container for the Letter */
+.letter-clipping-container {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 340px;
+  height: 240px;
+  border-radius: 20px;
+  overflow: hidden;
+  z-index: 2;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+.envelope-container.envelope-open .letter-clipping-container {
+  overflow: visible;
+}
+
+.envelope-container.envelope-open.envelope-unfolded .letter-clipping-container {
+  position: relative;
+  top: auto;
+  left: auto;
+  bottom: auto;
+  transform: none;
+  width: 100%;
+  max-width: 580px;
+  height: auto;
+  overflow: visible;
+  z-index: 20;
+  pointer-events: auto;
+  margin: 0 auto;
 }
 
 /* The Handwritten Letter Paper */
 .letter-paper {
   position: absolute;
-  top: 15px;
-  left: 15px;
-  right: 15px;
+  top: 25px;
+  left: 50%;
+  transform: translateX(-50%) translateY(0);
+  width: 300px;
+  height: 180px;
   background: #ffffff;
   background-image: 
     linear-gradient(#fcd5ce 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,182,193,0.15) 1px, transparent 1px);
+    linear-gradient(90deg, rgba(255, 182, 193, 0.15) 1px, transparent 1px);
   background-size: 100% 28px, 28px 100%;
-  border-radius: 16px;
+  border-radius: 14px;
   border: 1.5px solid #ffccd5;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
-  padding: 30px 24px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  padding: 24px 20px;
   z-index: 2;
-  transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.8s ease;
+  overflow: hidden;
+  opacity: 1;
+  visibility: visible;
   pointer-events: none;
-  opacity: 0.9;
-  transform: translateY(0);
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.4s ease;
 }
 
-/* When envelope is opened: Letter unfolds and expands */
+.letter-stamp,
+.letter-inner-content {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease;
+}
+
+/* While envelope is opening: Letter slides smoothly up out of pocket */
+.envelope-container.envelope-open .letter-paper {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(-120px);
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) 0.12s, opacity 0.3s ease 0.08s;
+}
+
+/* When letter is unfolded: Expands to full readable size */
 .envelope-container.envelope-open .letter-paper.unfolded {
   position: relative;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: auto;
+  left: auto;
+  transform: none;
   width: 100%;
   max-width: 580px;
+  height: auto;
   min-height: 480px;
-  z-index: 10;
+  margin: 0 auto;
+  z-index: 20;
   opacity: 1;
+  visibility: visible;
+  overflow: visible;
   pointer-events: auto;
-  transform: translateY(-80px) scale(1.02);
-  box-shadow: 0 30px 70px rgba(255, 105, 135, 0.25);
-  animation: paperCreaseOpen 0.8s ease forwards;
+  padding: 36px 30px;
+  border-radius: 20px;
+  border: 2px solid #ffccd5;
+  box-shadow: 0 25px 60px rgba(255, 105, 135, 0.28);
+  animation: paperCreaseOpen 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.envelope-container.envelope-open .letter-paper.unfolded .letter-stamp,
+.envelope-container.envelope-open .letter-paper.unfolded .letter-inner-content {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.5s ease 0.2s;
 }
 
 .letter-stamp {
@@ -1630,10 +1744,14 @@ html, body {
   image-rendering: high-quality;
   transform: translateZ(0);
   backface-visibility: hidden;
-  filter: none !important;
-  opacity: 1 !important;
   -webkit-user-drag: none;
   user-select: none;
+  transition: opacity 0.22s ease-out, transform 0.22s ease-out;
+}
+
+.lightbox-img.switching {
+  opacity: 0.45;
+  transform: scale(0.985);
 }
 
 .lightbox-details {
@@ -1658,6 +1776,14 @@ html, body {
   margin-top: 2px;
 }
 
+.lightbox-controls-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 6px;
+}
+
 .lightbox-counter {
   font-size: 11.5px;
   font-weight: 800;
@@ -1666,7 +1792,36 @@ html, body {
   padding: 3px 10px;
   border-radius: 12px;
   display: inline-block;
-  margin-top: 6px;
+}
+
+.lightbox-play-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #ffe3eb;
+  border: 1.5px solid #ffccd5;
+  color: var(--deep-rose);
+  font-family: var(--font-heading);
+  font-size: 11.5px;
+  font-weight: 800;
+  padding: 3px 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: var(--transition-bounce);
+  outline: none;
+}
+
+.lightbox-play-btn:hover {
+  background: var(--primary-pink);
+  color: #ffffff;
+  border-color: var(--primary-pink);
+  transform: translateY(-1px);
+}
+
+.lightbox-play-btn.playing {
+  background: linear-gradient(135deg, #ff758f, #ff4d6d);
+  color: #ffffff;
+  border-color: #ff4d6d;
 }
 
 .lightbox-nav-btn {
