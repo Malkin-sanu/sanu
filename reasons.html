@@ -22,11 +22,15 @@
   <!-- Background Particle & Confetti Canvas -->
   <canvas id="particleCanvas" class="particle-canvas-layer"></canvas>
 
-  <!-- Floating Audio Mute / Unmute Control -->
-  <aside class="floating-controls">
-    <button id="musicToggleBtn" class="floating-music-btn" aria-label="Toggle background music" title="Toggle background music">
+  <!-- Floating Audio Controls (Play/Pause & Stop) -->
+  <aside class="floating-controls" aria-label="Music controls">
+    <button id="musicToggleBtn" class="floating-music-btn" aria-label="Play background music" title="Play / Pause background music">
       <span class="music-icon-disc">🔇</span>
     </button>
+    <button id="musicStopBtn" class="floating-stop-btn" aria-label="Stop background music" title="Stop background music">
+      <span class="music-icon-stop">⏹️</span>
+    </button>
+    <audio id="bgMusic" preload="auto" loop src="assets/music/birthday-lofi.mp3"></audio>
   </aside>
 
   <!-- Navigation / Progress Tracker -->

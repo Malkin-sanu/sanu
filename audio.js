@@ -3,26 +3,31 @@
  * 🎵 DREAMY BIRTHDAY AUDIO ENGINE
  * ====================================================================
  * Features:
- * - Autoplay policy compliance: gracefully starts on first user touch/click.
- * - Supports custom MP3 file (e.g. assets/music/birthday-lofi.mp3).
+ * - Autoplay policy compliance: gracefully starts on explicit user play or unlock.
+ * - Supports custom audio file (assets/music/birthday-lofi.mp3, assets/music/birthday-lofi.wav).
+ * - Full STOP and PAUSE controls with instant response and zero audio leakage.
+ * - Persistent playback state across page navigation (respects user pause/stop).
  * - Built-in procedural Music Box / Kalimba lullaby synthesis via Web Audio API
- *   so the website ALWAYS has gorgeous, relaxing background music even with 0 external files!
+ *   with dedicated gain routing, zero oscillator leaks, and instantaneous muting.
  * - Delightful cute sound effects (SFX): keypad clicks, unlock chime, envelope open, candle blow!
  */
 
 class BirthdayAudioEngine {
   constructor() {
     this.audioCtx = null;
+    this.masterGain = null;
+    this.musicGain = null;
+    this.sfxGain = null;
     this.customAudio = null;
     this.isPlaying = false;
-    this.isMuted = false;
     this.usingProcedural = false;
     this.proceduralInterval = null;
-    this.masterGain = null;
+    this.activeOscillators = [];
     this.hasUserInteracted = false;
+    this.proceduralStep = 0;
+    this.pendingResumeListeners = [];
 
     // Melody notes for procedural music box (Gentle, dreamy lullaby)
-    // C4, D4, E4, G4, A4, C5, D5, E5 pentatonic & Happy Birthday chords
     this.melodySequence = [
       { note: 261.63, duration: 0.6, delay: 0 },    // C4
       { note: 329.63, duration: 0.6, delay: 0.4 },  // E4
@@ -44,73 +49,26 @@ class BirthdayAudioEngine {
     ];
   }
 
-  init() {
-    // Try to load custom audio if configured
-    if (window.BIRTHDAY_CONFIG && window.BIRTHDAY_CONFIG.music && window.BIRTHDAY_CONFIG.music.customAudioPath) {
-      try {
-        this.customAudio = new Audio(window.BIRTHDAY_CONFIG.music.customAudioPath);
-        this.customAudio.loop = true;
-        this.customAudio.volume = 0.55;
-
-        // Verify if file actually exists and can play
-        this.customAudio.addEventListener('error', () => {
-          console.info("Custom MP3 not found. Switching to built-in dreamy music box chime.");
-          this.usingProcedural = true;
-        });
-      } catch (e) {
-        this.usingProcedural = true;
-      }
-    } else {
-      this.usingProcedural = true;
-    }
-
-    // Set up first-interaction listener
-    const unlockAudio = () => {
-      this.hasUserInteracted = true;
-      if (!this.audioCtx) {
-        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-        if (AudioContextClass) {
-          this.audioCtx = new AudioContextClass();
-          this.masterGain = this.audioCtx.createGain();
-          this.masterGain.gain.setValueAtTime(0.35, this.audioCtx.currentTime);
-          this.masterGain.connect(this.audioCtx.destination);
-        }
-      } else if (this.audioCtx.state === 'suspended') {
-        this.audioCtx.resume();
-      }
-
-      document.removeEventListener('click', unlockAudio);
-      document.removeEventListener('keydown', unlockAudio);
-      document.removeEventListener('touchstart', unlockAudio);
-    };
-
-    document.addEventListener('click', unlockAudio, { once: true });
-    document.addEventListener('keydown', unlockAudio, { once: true });
-    document.addEventListener('touchstart', unlockAudio, { once: true });
-
-    // Check if music was already active on previous page
-    try {
-      if (sessionStorage.getItem('birthday_music_playing') === 'true') {
-        const resumeAudio = () => {
-          this.playMusic();
-        };
-        document.addEventListener('click', resumeAudio, { once: true });
-        document.addEventListener('keydown', resumeAudio, { once: true });
-        document.addEventListener('touchstart', resumeAudio, { once: true });
-        // Attempt immediate playback in case user gesture carries over
-        this.playMusic();
-      }
-    } catch (e) {}
-  }
-
   ensureAudioContext() {
     if (!this.audioCtx) {
       const AudioContextClass = window.AudioContext || window.webkitAudioContext;
       if (AudioContextClass) {
         this.audioCtx = new AudioContextClass();
+
+        // Master gain
         this.masterGain = this.audioCtx.createGain();
-        this.masterGain.gain.setValueAtTime(0.35, this.audioCtx.currentTime);
+        this.masterGain.gain.setValueAtTime(1.0, this.audioCtx.currentTime);
         this.masterGain.connect(this.audioCtx.destination);
+
+        // Music dedicated gain (can be muted immediately on pause/stop)
+        this.musicGain = this.audioCtx.createGain();
+        this.musicGain.gain.setValueAtTime(0.35, this.audioCtx.currentTime);
+        this.musicGain.connect(this.masterGain);
+
+        // SFX dedicated gain (stays active even if music is paused/stopped)
+        this.sfxGain = this.audioCtx.createGain();
+        this.sfxGain.gain.setValueAtTime(0.4, this.audioCtx.currentTime);
+        this.sfxGain.connect(this.masterGain);
       }
     }
     if (this.audioCtx && this.audioCtx.state === 'suspended') {
@@ -118,49 +76,222 @@ class BirthdayAudioEngine {
     }
   }
 
-  playMusic() {
-    this.ensureAudioContext();
-    this.isPlaying = true;
-    this.isMuted = false;
+  init() {
+    // Check DOM for <audio id="bgMusic"> first, or instantiate new Audio
+    const existingAudio = document.getElementById('bgMusic');
+    const audioPath = (window.BIRTHDAY_CONFIG && window.BIRTHDAY_CONFIG.music && window.BIRTHDAY_CONFIG.music.customAudioPath) 
+      ? window.BIRTHDAY_CONFIG.music.customAudioPath 
+      : 'assets/music/birthday-lofi.mp3';
+
+    if (existingAudio) {
+      this.customAudio = existingAudio;
+    } else {
+      try {
+        this.customAudio = new Audio(audioPath);
+        this.customAudio.id = 'bgMusic';
+      } catch (e) {
+        this.usingProcedural = true;
+      }
+    }
+
+    if (this.customAudio) {
+      this.customAudio.loop = true;
+      this.customAudio.volume = 0.55;
+
+      // Keep UI in sync with native audio element events
+      this.customAudio.addEventListener('pause', () => {
+        if (!this.usingProcedural) {
+          this.isPlaying = false;
+          this.updateUiState();
+        }
+      });
+      this.customAudio.addEventListener('play', () => {
+        if (!this.usingProcedural) {
+          this.isPlaying = true;
+          this.updateUiState();
+        }
+      });
+      this.customAudio.addEventListener('error', () => {
+        // Fall back to procedural music box if file cannot be loaded
+        this.usingProcedural = true;
+        if (this.isPlaying) {
+          this.startProceduralMelody();
+        }
+      });
+    }
+
+    // Check saved state from previous page
+    let savedState = null;
     try {
-      sessionStorage.setItem('birthday_music_playing', 'true');
+      savedState = sessionStorage.getItem('birthday_music_state');
     } catch (e) {}
 
-    // Check if custom audio is loaded and playable
-    if (this.customAudio && !this.usingProcedural) {
-      const playPromise = this.customAudio.play();
-      if (playPromise !== undefined) {
-        playPromise
-          .then(() => {
-            this.usingProcedural = false;
-            this.updateUiState();
-          })
-          .catch(() => {
-            // Autoplay rejected or 404, fallback to procedural music box
-            this.usingProcedural = true;
-            this.startProceduralMelody();
-            this.updateUiState();
-          });
+    // Unlock AudioContext on first user gesture (for SFX, clicks, etc.)
+    const unlockCtx = () => {
+      this.hasUserInteracted = true;
+      this.ensureAudioContext();
+    };
+    ['click', 'keydown', 'touchstart'].forEach(evt => {
+      document.addEventListener(evt, unlockCtx, { once: true, passive: true });
+    });
+
+    // Cross-page navigation handling:
+    // If user previously paused or stopped, DO NOT auto-play and DO NOT attach any resume listeners!
+    if (savedState === 'paused') {
+      this.isPlaying = false;
+      if (this.customAudio) this.customAudio.pause();
+      this.updateUiState();
+      return;
+    }
+
+    if (savedState === 'stopped') {
+      this.isPlaying = false;
+      if (this.customAudio) {
+        this.customAudio.pause();
+        this.customAudio.currentTime = 0;
+      }
+      this.updateUiState();
+      return;
+    }
+
+    if (savedState === 'playing') {
+      // Music was actively playing before navigating to this page.
+      // Attempt to continue playback seamlessly.
+      const tryAutoResume = () => {
+        const curr = sessionStorage.getItem('birthday_music_state');
+        if (curr === 'paused' || curr === 'stopped') {
+          return;
+        }
+        this.playMusic();
+      };
+
+      // Try immediate playback
+      const playPromise = this.playMusic();
+      if (playPromise && playPromise.catch) {
+        playPromise.catch(() => {
+          // Autoplay policy prevented immediate play, attach one-shot interaction listener
+          const resumeOnGesture = (e) => {
+            if (e && e.target && (e.target.closest('#musicToggleBtn') || e.target.closest('#musicStopBtn'))) {
+              return;
+            }
+            const curr = sessionStorage.getItem('birthday_music_state');
+            if (curr === 'paused' || curr === 'stopped') {
+              return;
+            }
+            this.playMusic();
+            this.removePendingResumeListeners();
+          };
+
+          this.addPendingResumeListener('click', resumeOnGesture);
+          this.addPendingResumeListener('keydown', resumeOnGesture);
+          this.addPendingResumeListener('touchstart', resumeOnGesture);
+        });
       }
     } else {
-      this.usingProcedural = true;
-      this.startProceduralMelody();
+      // No saved state (fresh session on index.html)
       this.updateUiState();
     }
   }
 
+  addPendingResumeListener(type, handler) {
+    document.addEventListener(type, handler, { once: true });
+    this.pendingResumeListeners.push({ type, handler });
+  }
+
+  removePendingResumeListeners() {
+    this.pendingResumeListeners.forEach(({ type, handler }) => {
+      document.removeEventListener(type, handler);
+    });
+    this.pendingResumeListeners = [];
+  }
+
+  async playMusic() {
+    // If already playing, do not spawn another instance
+    if (this.isPlaying) {
+      this.updateUiState();
+      return;
+    }
+
+    this.ensureAudioContext();
+    this.removePendingResumeListeners();
+
+    this.isPlaying = true;
+    try {
+      sessionStorage.setItem('birthday_music_state', 'playing');
+      sessionStorage.setItem('birthday_music_playing', 'true');
+    } catch (e) {}
+
+    // Make sure music gain is unmuted
+    if (this.musicGain && this.audioCtx) {
+      this.musicGain.gain.cancelScheduledValues(this.audioCtx.currentTime);
+      this.musicGain.gain.setValueAtTime(0.35, this.audioCtx.currentTime);
+    }
+
+    // Try custom audio first if not flagged procedural
+    if (this.customAudio && !this.usingProcedural) {
+      try {
+        // Stop procedural if running
+        this.stopProceduralMelody();
+        await this.customAudio.play();
+        this.usingProcedural = false;
+        this.updateUiState();
+        return;
+      } catch (err) {
+        // Custom audio play failed (e.g. autoplay restriction or 404), fallback to procedural
+        if (!this.isPlaying) return; // aborted in between
+        this.usingProcedural = true;
+      }
+    }
+
+    // Play procedural melody
+    this.usingProcedural = true;
+    this.startProceduralMelody();
+    this.updateUiState();
+  }
+
   pauseMusic() {
     this.isPlaying = false;
+    this.removePendingResumeListeners();
+
     try {
+      sessionStorage.setItem('birthday_music_state', 'paused');
       sessionStorage.setItem('birthday_music_playing', 'false');
     } catch (e) {}
+
+    // 1. Immediately pause HTML5 audio element
     if (this.customAudio) {
-      this.customAudio.pause();
+      try {
+        this.customAudio.pause();
+      } catch (e) {}
     }
-    if (this.proceduralInterval) {
-      clearInterval(this.proceduralInterval);
-      this.proceduralInterval = null;
+
+    // 2. Immediately stop & mute all procedural oscillators & scheduled notes
+    this.stopProceduralMelody();
+
+    this.updateUiState();
+  }
+
+  stopMusic() {
+    this.isPlaying = false;
+    this.removePendingResumeListeners();
+
+    try {
+      sessionStorage.setItem('birthday_music_state', 'stopped');
+      sessionStorage.setItem('birthday_music_playing', 'false');
+    } catch (e) {}
+
+    // 1. Immediately pause and reset HTML5 audio element to beginning
+    if (this.customAudio) {
+      try {
+        this.customAudio.pause();
+        this.customAudio.currentTime = 0;
+      } catch (e) {}
     }
+
+    // 2. Immediately stop procedural melody and reset note index to 0
+    this.stopProceduralMelody();
+    this.proceduralStep = 0;
+
     this.updateUiState();
   }
 
@@ -172,19 +303,49 @@ class BirthdayAudioEngine {
     }
   }
 
-  startProceduralMelody() {
+  stopProceduralMelody() {
+    // Clear scheduled interval loop
     if (this.proceduralInterval) {
       clearInterval(this.proceduralInterval);
+      this.proceduralInterval = null;
+    }
+
+    // Instantly mute music gain node to cancel all pre-scheduled notes
+    if (this.musicGain && this.audioCtx) {
+      this.musicGain.gain.cancelScheduledValues(this.audioCtx.currentTime);
+      this.musicGain.gain.setValueAtTime(0, this.audioCtx.currentTime);
+    }
+
+    // Immediately stop and disconnect all active oscillators
+    this.activeOscillators.forEach(osc => {
+      try {
+        osc.stop();
+        osc.disconnect();
+      } catch (e) {}
+    });
+    this.activeOscillators = [];
+  }
+
+  startProceduralMelody() {
+    this.stopProceduralMelody();
+    if (!this.isPlaying) return;
+
+    this.ensureAudioContext();
+    if (!this.audioCtx) return;
+
+    // Unmute music gain
+    if (this.musicGain) {
+      this.musicGain.gain.cancelScheduledValues(this.audioCtx.currentTime);
+      this.musicGain.gain.setValueAtTime(0.35, this.audioCtx.currentTime);
     }
 
     const loopLengthSeconds = 11.5;
     const playLoop = () => {
-      if (!this.isPlaying || !this.audioCtx) return;
-      
+      if (!this.isPlaying || !this.audioCtx || this.audioCtx.state !== 'running') return;
       const now = this.audioCtx.currentTime;
+
       this.melodySequence.forEach(item => {
         this.scheduleMusicBoxChime(item.note, now + item.delay, item.duration);
-        // Play gentle sub-bass / root note
         if (item.delay % 2 === 0) {
           this.scheduleWarmBass(item.note / 2, now + item.delay, 1.5);
         }
@@ -196,9 +357,8 @@ class BirthdayAudioEngine {
   }
 
   scheduleMusicBoxChime(freq, time, duration = 0.8) {
-    if (!this.audioCtx || this.audioCtx.state !== 'running') return;
+    if (!this.audioCtx || this.audioCtx.state !== 'running' || !this.isPlaying) return;
 
-    // Primary bell tone
     const osc1 = this.audioCtx.createOscillator();
     const osc2 = this.audioCtx.createOscillator();
     const gainNode = this.audioCtx.createGain();
@@ -206,29 +366,39 @@ class BirthdayAudioEngine {
     osc1.type = 'sine';
     osc1.frequency.setValueAtTime(freq, time);
 
-    // Harmonic bell shimmer
     osc2.type = 'triangle';
     osc2.frequency.setValueAtTime(freq * 2.01, time);
 
-    // Envelope: quick attack, sparkling natural decay
     gainNode.gain.setValueAtTime(0.0001, time);
     gainNode.gain.exponentialRampToValueAtTime(0.22, time + 0.02);
     gainNode.gain.exponentialRampToValueAtTime(0.0001, time + duration);
 
     osc1.connect(gainNode);
     osc2.connect(gainNode);
-    gainNode.connect(this.masterGain);
+    gainNode.connect(this.musicGain || this.masterGain || this.audioCtx.destination);
 
     osc1.start(time);
     osc2.start(time);
     osc1.stop(time + duration + 0.1);
     osc2.stop(time + duration + 0.1);
+
+    this.activeOscillators.push(osc1, osc2);
+
+    // Clean up oscillator references once stopped
+    setTimeout(() => {
+      const idx1 = this.activeOscillators.indexOf(osc1);
+      if (idx1 !== -1) this.activeOscillators.splice(idx1, 1);
+      const idx2 = this.activeOscillators.indexOf(osc2);
+      if (idx2 !== -1) this.activeOscillators.splice(idx2, 1);
+    }, (duration + 0.2) * 1000);
   }
 
   scheduleWarmBass(freq, time, duration = 1.2) {
-    if (!this.audioCtx || this.audioCtx.state !== 'running') return;
+    if (!this.audioCtx || this.audioCtx.state !== 'running' || !this.isPlaying) return;
+
     const osc = this.audioCtx.createOscillator();
     const gain = this.audioCtx.createGain();
+
     osc.type = 'sine';
     osc.frequency.setValueAtTime(freq, time);
 
@@ -237,19 +407,25 @@ class BirthdayAudioEngine {
     gain.gain.exponentialRampToValueAtTime(0.0001, time + duration);
 
     osc.connect(gain);
-    gain.connect(this.masterGain);
+    gain.connect(this.musicGain || this.masterGain || this.audioCtx.destination);
 
     osc.start(time);
     osc.stop(time + duration + 0.1);
+
+    this.activeOscillators.push(osc);
+    setTimeout(() => {
+      const idx = this.activeOscillators.indexOf(osc);
+      if (idx !== -1) this.activeOscillators.splice(idx, 1);
+    }, (duration + 0.2) * 1000);
   }
 
-  // Cute SFX for Keypad clicks
+  // SFX connect to sfxGain / destination so they work regardless of music state!
   playKeypadClick(digit) {
     this.ensureAudioContext();
     if (!this.audioCtx || this.audioCtx.state !== 'running') return;
 
     const notes = [261.63, 293.66, 329.63, 349.23, 392.00, 440.00, 493.88, 523.25, 587.33, 659.25];
-    const freq = notes[parseInt(digit) % notes.length] || 440;
+    const freq = notes[parseInt(digit, 10) % notes.length] || 440;
 
     const osc = this.audioCtx.createOscillator();
     const gain = this.audioCtx.createGain();
@@ -261,13 +437,12 @@ class BirthdayAudioEngine {
     gain.gain.exponentialRampToValueAtTime(0.001, this.audioCtx.currentTime + 0.12);
 
     osc.connect(gain);
-    gain.connect(this.audioCtx.destination);
+    gain.connect(this.sfxGain || this.audioCtx.destination);
 
     osc.start();
     osc.stop(this.audioCtx.currentTime + 0.12);
   }
 
-  // Cute error boop
   playErrorSound() {
     this.ensureAudioContext();
     if (!this.audioCtx || this.audioCtx.state !== 'running') return;
@@ -283,19 +458,18 @@ class BirthdayAudioEngine {
     gain.gain.exponentialRampToValueAtTime(0.001, this.audioCtx.currentTime + 0.25);
 
     osc.connect(gain);
-    gain.connect(this.audioCtx.destination);
+    gain.connect(this.sfxGain || this.audioCtx.destination);
 
     osc.start();
     osc.stop(this.audioCtx.currentTime + 0.25);
   }
 
-  // Magical unlock fanfare
   playUnlockSuccess() {
     this.ensureAudioContext();
     if (!this.audioCtx || this.audioCtx.state !== 'running') return;
 
     const now = this.audioCtx.currentTime;
-    const arpeggio = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
+    const arpeggio = [523.25, 659.25, 783.99, 1046.50];
 
     arpeggio.forEach((f, i) => {
       const osc = this.audioCtx.createOscillator();
@@ -309,19 +483,17 @@ class BirthdayAudioEngine {
       gain.gain.exponentialRampToValueAtTime(0.001, now + i * 0.1 + 0.4);
 
       osc.connect(gain);
-      gain.connect(this.audioCtx.destination);
+      gain.connect(this.sfxGain || this.audioCtx.destination);
 
       osc.start(now + i * 0.1);
       osc.stop(now + i * 0.1 + 0.45);
     });
   }
 
-  // Candle blow swoosh sound
   playCandleBlow() {
     this.ensureAudioContext();
     if (!this.audioCtx || this.audioCtx.state !== 'running') return;
 
-    // Soft gentle breath puff / white noise
     const bufferSize = this.audioCtx.sampleRate * 0.5;
     const buffer = this.audioCtx.createBuffer(1, bufferSize, this.audioCtx.sampleRate);
     const data = buffer.getChannelData(0);
@@ -343,31 +515,65 @@ class BirthdayAudioEngine {
 
     noise.connect(filter);
     filter.connect(gain);
-    gain.connect(this.audioCtx.destination);
+    gain.connect(this.sfxGain || this.audioCtx.destination);
 
     noise.start();
   }
 
   updateUiState() {
-    const btn = document.getElementById('musicToggleBtn');
-    if (!btn) return;
+    const toggleBtn = document.getElementById('musicToggleBtn');
+    const stopBtn = document.getElementById('musicStopBtn');
+    let state = 'stopped';
+    try {
+      state = sessionStorage.getItem('birthday_music_state') || (this.isPlaying ? 'playing' : 'stopped');
+    } catch (e) {
+      state = this.isPlaying ? 'playing' : 'stopped';
+    }
 
-    if (this.isPlaying) {
-      btn.classList.add('playing');
-      btn.setAttribute('aria-label', 'Mute background music');
-      btn.innerHTML = `
-        <span class="music-icon-disc spinning">💿</span>
-        <span class="music-notes-anim">🎵</span>
-      `;
-    } else {
-      btn.classList.remove('playing');
-      btn.setAttribute('aria-label', 'Play background music');
-      btn.innerHTML = `
-        <span class="music-icon-disc">🔇</span>
-      `;
+    if (toggleBtn) {
+      if (this.isPlaying) {
+        toggleBtn.classList.add('playing');
+        toggleBtn.setAttribute('aria-label', 'Pause background music');
+        toggleBtn.title = 'Pause background music';
+        toggleBtn.innerHTML = `
+          <span class="music-icon-disc spinning">💿</span>
+          <span class="music-notes-anim">🎵</span>
+        `;
+      } else {
+        toggleBtn.classList.remove('playing');
+        if (state === 'paused') {
+          toggleBtn.setAttribute('aria-label', 'Resume background music');
+          toggleBtn.title = 'Resume background music';
+          toggleBtn.innerHTML = `
+            <span class="music-icon-disc">⏸️</span>
+          `;
+        } else {
+          toggleBtn.setAttribute('aria-label', 'Play background music');
+          toggleBtn.title = 'Play background music';
+          toggleBtn.innerHTML = `
+            <span class="music-icon-disc">🔇</span>
+          `;
+        }
+      }
+    }
+
+    if (stopBtn) {
+      if (this.isPlaying) {
+        stopBtn.classList.add('can-stop');
+        stopBtn.setAttribute('aria-label', 'Stop background music');
+        stopBtn.title = 'Stop background music';
+      } else {
+        stopBtn.classList.remove('can-stop');
+        stopBtn.setAttribute('aria-label', 'Music stopped');
+        stopBtn.title = 'Music stopped';
+      }
     }
   }
 }
 
 // Global audio singleton
 window.birthdayAudio = new BirthdayAudioEngine();
+window.playMusic = () => window.birthdayAudio.playMusic();
+window.pauseMusic = () => window.birthdayAudio.pauseMusic();
+window.stopMusic = () => window.birthdayAudio.stopMusic();
+window.toggleMusic = () => window.birthdayAudio.toggleMusic();

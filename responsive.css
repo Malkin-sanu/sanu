@@ -20,7 +20,12 @@
 
   .envelope-container {
     width: 310px;
-    min-height: 220px;
+    height: 220px;
+  }
+
+  .envelope-container::before {
+    width: 310px;
+    height: 220px;
   }
 
   .envelope-flap {
@@ -29,12 +34,26 @@
     border-top-width: 120px;
   }
 
+  .envelope-pocket {
+    width: 310px;
+    height: 220px;
+  }
+
+  .letter-clipping-container {
+    width: 310px;
+    height: 220px;
+  }
+
   .envelope-pocket-left {
     border-left-width: 155px;
+    border-top-width: 110px;
+    border-bottom-width: 110px;
   }
 
   .envelope-pocket-right {
     border-right-width: 155px;
+    border-top-width: 110px;
+    border-bottom-width: 110px;
   }
 
   .envelope-pocket-bottom {
@@ -43,13 +62,20 @@
     border-right-width: 155px;
   }
 
-  .letter-clipping-container {
-    width: 310px;
-    height: 220px;
+  .letter-paper {
+    width: 270px;
+    height: 170px;
+    padding: 20px 16px;
   }
 
-  .letter-paper {
-    padding: 24px 18px;
+  .envelope-container.envelope-open .letter-paper {
+    transform: translateX(-50%) translateY(-110px);
+  }
+
+  .envelope-container.envelope-open .letter-paper.unfolded {
+    max-width: 100%;
+    padding: 28px 20px;
+    transform: none;
   }
 
   .letter-body {
@@ -162,9 +188,18 @@
   }
 
   /* Envelope on Mobile */
+  .envelope-scene-wrapper {
+    padding: 24px 0 36px;
+  }
+
   .envelope-container {
     width: 280px;
-    min-height: 200px;
+    height: 200px;
+  }
+
+  .envelope-container::before {
+    width: 280px;
+    height: 200px;
   }
 
   .envelope-flap {
@@ -181,6 +216,20 @@
 
   .seal-heart {
     font-size: 17px;
+  }
+
+  .seal-text {
+    font-size: 8.5px;
+  }
+
+  .envelope-pocket {
+    width: 280px;
+    height: 200px;
+  }
+
+  .letter-clipping-container {
+    width: 280px;
+    height: 200px;
   }
 
   .envelope-pocket-left {
@@ -201,15 +250,23 @@
     border-right-width: 140px;
   }
 
-  .letter-clipping-container {
-    width: 280px;
-    height: 200px;
+  .letter-paper {
+    width: 245px;
+    height: 150px;
+    padding: 16px 14px;
+  }
+
+  .envelope-container.envelope-open .letter-paper {
+    transform: translateX(-50%) translateY(-95px);
   }
 
   .envelope-container.envelope-open .letter-paper.unfolded {
-    transform: translateY(-40px) scale(1);
+    width: 100%;
+    max-width: 100%;
     min-height: auto;
     padding: 22px 16px;
+    transform: none;
+    border-radius: 16px;
   }
 
   .letter-stamp {
@@ -290,12 +347,19 @@
   .floating-controls {
     bottom: 16px;
     right: 16px;
+    gap: 8px;
   }
 
   .floating-music-btn {
     width: 48px;
     height: 48px;
     font-size: 20px;
+  }
+
+  .floating-stop-btn {
+    width: 38px;
+    height: 38px;
+    font-size: 15px;
   }
 
   /* Reasons on Mobile */

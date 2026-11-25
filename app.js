@@ -50,11 +50,40 @@ document.addEventListener('DOMContentLoaded', () => {
   window.birthdayAudio.init();
   window.particleEngine.init();
 
-  // Floating Music Toggle Button
+  // Floating Music Controls (Play/Pause, Stop, dedicated Pause/Play)
   const musicToggleBtn = document.getElementById('musicToggleBtn');
   if (musicToggleBtn) {
-    musicToggleBtn.addEventListener('click', () => {
+    musicToggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      e.preventDefault();
       window.birthdayAudio.toggleMusic();
+    });
+  }
+
+  const musicStopBtn = document.getElementById('musicStopBtn');
+  if (musicStopBtn) {
+    musicStopBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      e.preventDefault();
+      window.birthdayAudio.stopMusic();
+    });
+  }
+
+  const musicPauseBtn = document.getElementById('musicPauseBtn');
+  if (musicPauseBtn) {
+    musicPauseBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      e.preventDefault();
+      window.birthdayAudio.pauseMusic();
+    });
+  }
+
+  const musicPlayBtn = document.getElementById('musicPlayBtn');
+  if (musicPlayBtn) {
+    musicPlayBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      e.preventDefault();
+      window.birthdayAudio.playMusic();
     });
   }
 
@@ -180,8 +209,14 @@ document.addEventListener('DOMContentLoaded', () => {
         unlockBtn.innerHTML = '<span>UNLOCKED! 💖</span>';
       }
 
-      // Automatically start dreamy music
-      window.birthdayAudio.playMusic();
+      // Automatically start dreamy music only if user has not explicitly paused or stopped it
+      let savedMusicState = null;
+      try {
+        savedMusicState = sessionStorage.getItem('birthday_music_state');
+      } catch (e) {}
+      if (savedMusicState !== 'paused' && savedMusicState !== 'stopped') {
+        window.birthdayAudio.playMusic();
+      }
 
       // Show nav track once unlocked
       if (navTrack) {

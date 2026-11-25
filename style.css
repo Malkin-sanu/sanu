@@ -68,17 +68,21 @@ html, body {
   z-index: 1;
 }
 
-/* Floating Music Control Button */
+/* Floating Music Control Buttons */
 .floating-controls {
   position: fixed;
   bottom: 24px;
   right: 24px;
   z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.floating-music-btn {
-  width: 54px;
-  height: 54px;
+.floating-music-btn,
+.floating-stop-btn {
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
   border: 2px solid #ffffff;
   background: linear-gradient(135deg, #ff758f, #ff4d6d);
@@ -87,17 +91,31 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 24px;
+  font-size: 22px;
   transition: var(--transition-bounce);
   outline: none;
+  position: relative;
+  user-select: none;
 }
 
-.floating-music-btn:hover {
-  transform: scale(1.1) rotate(6deg);
+.floating-stop-btn {
+  width: 44px;
+  height: 44px;
+  font-size: 18px;
+  background: linear-gradient(135deg, #ffa2b9, #ff758f);
+  box-shadow: 0 6px 18px rgba(255, 117, 143, 0.35);
+  opacity: 0.92;
+}
+
+.floating-music-btn:hover,
+.floating-stop-btn:hover {
+  transform: scale(1.1) rotate(5deg);
   box-shadow: 0 10px 30px rgba(255, 77, 109, 0.55);
+  opacity: 1;
 }
 
-.floating-music-btn:active {
+.floating-music-btn:active,
+.floating-stop-btn:active {
   transform: scale(0.95);
 }
 
