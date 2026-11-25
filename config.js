@@ -390,7 +390,7 @@ const BIRTHDAY_CONFIG = {
     wishCardTitle: "A Birthday Wish For You",
     wishCardText: "Dua hai ki tumhari life ka ye naya saal tumhare liye dher saari sachchi khushiyan, achhi health, exciting adventures, unforgettable love aur tumhare dil mein chhupe har ek sapne ko poora karne ke naye mauke lekar aayeTum duniya ki har khushi deserve karti ho, balki usse bhi kahin zyada!.",
     finalQuote: "“Good friends are like stars — you don't always see them, but you know they're always there.”",
-    signature: "Happy Birthday, Bestie! Forever grateful for you 💕 KA TIMI KAHILE MALAI CHHODERA TA JAADAINAU NI? 🥺❤️ Love you sanu🫶" ,
+    signature: "Happy Birthday, Bestie! Forever grateful for you 💕 MISS YOU BACCHA 😭🥺❤️ Love you sanu🫶" ,
   },
 
   // 🎵 Background Music Configuration
